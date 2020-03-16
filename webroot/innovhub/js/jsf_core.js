@@ -38,6 +38,7 @@ var jsfcore_menu_color = '#FFFFFF';
 var jsfcore_menu_opacity = '0.90';
 var jsfcore_tabbedmenuitemid = '';
 
+var jsfcore_trackpages = false;
 var jsfcore_forcehttps = true;
 var jsfcore_basedir = '/';
 var jsfcore_internallinks = true;
@@ -361,7 +362,7 @@ function jsfcore_trackitem(action,str1,str2){
    
    var url = jsfcore_domain + jsfcore_servercontroller + '&action=trackitem';
    url = url + '&view=' + encodeURIComponent(jsfcore_ht);
-   if (Boolean(rmpaction)) url = url + '&foraction=' + encodeURIComponent(action);
+   if (Boolean(action)) url = url + '&foraction=' + encodeURIComponent(action);
    if (Boolean(str1)) url = url + '&jsftrack1=' + encodeURIComponent(str1);
    if (Boolean(str2)) url = url + '&jsftrack2=' + encodeURIComponent(str2);
    if (Boolean(str3)) url = url + '&jsftrack3=' + encodeURIComponent(str3);
@@ -491,7 +492,9 @@ function jsfcore_goback(){
    else jsfcore_historycnt=0;
    jsfcore_displayFunct = jsfcore_historyscr[(jsfcore_historycnt-1)];
    jsfcore_displayParam = jsfcore_historyparam[(jsfcore_historycnt-1)];
-   jsfcore_displayFunct();
+   
+   jsfcore_fixwidths();
+   //jsfcore_displayFunct();
 }
 
 
@@ -511,7 +514,9 @@ function jsfcore_addhistory(func,param){
    }
    
    var str1 = jsfcore_globaluser.userid;
-   //jsfcore_trackitem(jsfcore_displayFunct.name,str1);
+   var action = jsfcore_displayFunct.name;
+   if(action=='jsfcore_showPageView' && Boolean(param)) action = param;
+   if(jsfcore_trackpages) jsfcore_trackitem(action,str1);
 }
 
 function getLoadingHTML(){
@@ -616,7 +621,6 @@ function jsfcore_controller() {
          pos_2 = jsfcore_initpaths[(jsfcore_initpaths.length - 2)];
       }
    }
-   //alert("position 1: " + pos_1 + ", position 2: " + pos_2);
    
    //alert('initpath: ' + initpathname + ' chunked: ' + JSON.stringify(jsfcore_initpaths));
    
@@ -968,10 +972,10 @@ var jsfcore_globaluser;
 var jsfcore_loggedin = false;
 var jsfcore_waitingonlogin = false;
 var jsfcore_afteraccountfn;
-function jsfcore_checkaccount(fn){
+function jsfcore_checkaccount(fn,forcecheck){
    //alert('jsfcore_checkaccount');
    //check if user is logged in already...
-   if (!jsfcore_waitingonlogin && !jsfcore_loggedin) {
+   if (Boolean(forcecheck) || (!jsfcore_waitingonlogin && !jsfcore_loggedin)) {
       //alert('checking if user/token is available');
       jsfcore_waitingonlogin = true;
       jsfcore_loggedin = false;
@@ -1792,6 +1796,9 @@ function jsfcore_fixwidths(){
    jsfcore_buildPageStructure();
    //jsfcore_setbgcolor('#DDDDDD');
    if(!Boolean(jsfcore_displayFunct)) jsfcore_displayFunct = jsfcore_showHomePage;
+   
+   //alert('calling display func: ' + jsfcore_displayFunct.name + ' param: ' + jsfcore_displayParam);
+   
    jsfcore_displayFunct(jsfcore_displayParam);
    jsfcore_createmenu();
    jsfcore_updateclasses();   
@@ -1824,8 +1831,8 @@ function jsfcore_buildPageStructure(){
 
    // only if dev mode is allowed (even so, this is barely visible)
    if(jsfcore_allowdevmode) {
-      str += '<div id=\"jsfpb_enterdev\" style=\"position:absolute;top:0px;left:0px;z-index:10;width:10px;height:10px;overflow:hidden;background-color:#F1F1F1;\" onclick=\"jsfpb_enterdevmode();\"></div>';
-      str += '<div id=\"jsfpb_exitdev\" style=\"display:none;position:absolute;top:0px;left:0px;z-index:10;background-color:#F1F1F1;font-size:10px;padding:2px;cursor:pointer;\" onclick=\"jsfpb_exitdevmode();\">Dev Mode</div>';
+      str += '<div id=\"jsfpb_enterdev\" style=\"position:absolute;top:0px;left:0px;z-index:90;width:10px;height:10px;overflow:hidden;\" onclick=\"jsfpb_enterdevmode();\"></div>';
+      str += '<div id=\"jsfpb_exitdev\" style=\"display:none;position:absolute;top:0px;left:0px;z-index:90;background-color:#F1F1F1;font-size:6px;padding:2px;cursor:pointer;\" onclick=\"jsfpb_exitdevmode();\">&lt;/&gt;</div>';
    }
    
    
@@ -1908,7 +1915,8 @@ function jsfcore_buildPageStructure(){
    jQuery('#jsfcore_body').css('position','relative');
    
    if(Boolean(jsfcore_footer_height)) {   
-      jQuery('#jsfcore_footer').css('width', jsfcore_globalwidth + 'px').css('position','relative').css('left','0px').css('z-index','3');
+      jQuery('#jsfcore_footer').css('width', jsfcore_globalwidth + 'px').css('position','relative').css('left','0px').css('z-index','5');
+      jQuery('#jsfcore_footer').css('background-color',jsfcore_footer_bgcolor);
    }
    
    jsfpb_headerheight = jsfcore_header_height;

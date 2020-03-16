@@ -20,8 +20,10 @@ var jsfpb_defaultfont = 'Arial';
 
 var jsfpb_devmode = false;
 
-var jsfpb_servercontroller = 'jsfcode/jsonpcontroller.php?jodon=1';
+var jsfpb_jsoncontroller = 'jsfcode/jsoncontroller.php?jodon=1';
+var jsfpb_servercontroller = 'jsfcode/jsoncontroller.php?format=jsonp';
 
+var jsfpb_captcha;
 
 // Given a list of WD table nvp data, this will construct the page object
 // for display
@@ -1308,6 +1310,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
       var mintop = 10000000;
       var maxbot = 0;
       var oright;
+      var fixdim = false;
       var variableht = false;
       // child top + parent top
       var parenttops = {};
@@ -1321,6 +1324,9 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
                //alert('layer header found: ' + JSON.stringify(lyr));
                if(Boolean(lyr.oright) && !isNaN(lyr.oright) && parseInt(lyr.oright)>200) {
                   oright = parseInt(lyr.oright);
+               }
+               if(Boolean(lyr.fixdim) && lyr.fixdim=='1') {
+                  fixdim = true;
                }
             } else if(lyr.type!='code' && (!Boolean(lyr.hide) || lyr.hide!='1')) {
                if(Boolean(lyr.parent) && !Boolean(parenttops[lyr.parent])) {
@@ -1361,6 +1367,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
       var divht = jQuery('#' + jsondata.divid).height();
       
       
+      var usingtp = 0;
       var eff_ratio;
       //If originator specified strict sizing
       if(Boolean(oright)) {
@@ -1370,14 +1377,34 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
          if(divwd < (vwd * eff_ratio)) eff_ratio = (divwd / vwd);
       } else {
          eff_ratio = (divwd / vwd);
-         if(Boolean(divht) && !variableht && (eff_ratio * vht)>divht) eff_ratio = (divht/vht);
+         if(Boolean(divht) && !variableht){
+            if(fixdim) {
+               if((eff_ratio * vht)>divht) eff_ratio = (divht/vht);
+            } else {
+               //**chj**
+               var adjht = eff_ratio * vht;
+               if(adjht>divht) {
+                  if(((adjht - divht)/adjht)>0.2) {
+                     eff_ratio = (divht/(0.8 * vht));
+                     adjht = eff_ratio * vht;
+                  }
+                  usingtp = (-1) * Math.round((adjht - divht)/2);
+               } else {
+                  eff_ratio = (divht/vht);
+                  var adjwd = eff_ratio * vwd;
+                  if(adjwd>divwd) {
+                     if(((adjwd - divwd)/adjwd)>0.2) {
+                        eff_ratio = (divwd / (vwd * 0.8));
+                        adjwd = eff_ratio * vwd;
+                     }
+                  }
+               }
+            }
+         }
       }
       
-      var usingtp = 0;
       // This will effectively center the layer within the div
       var usinglf = Math.floor((divwd - (eff_ratio * vwd))/2);
-      
-      
       
       // make sure there's at least enough room for estimate
       jQuery('#' + jsondata.divid).css('min-height',Math.ceil(vht * eff_ratio) + 'px');
@@ -1490,7 +1517,8 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
                   if(Boolean(lyr.onclick)) {
                      var oc = jsfpb_replaceAll('http:','https:',lyr.onclick);
                      if(oc.startsWith('http')) oc = 'window.open(\'' + oc + '\');';
-                     if(!oc.endsWith(';') && !oc.includes('(') && !oc.includes(')')) oc = 'jsfpb_getPage(jsfpb_wdname,\'' + oc + '\',\'\',jsfpb_lastdivid,\'\',\'\',jsfpb_lastver);jQuery(\'body\').scrollTop(0);';
+                     else if(oc.includes('/') && !oc.endsWith(';') && !oc.includes('(') && !oc.includes(')')) oc = 'location.href=\'' + oc + '\';';
+                     else if(!oc.endsWith(';') && !oc.includes('(') && !oc.includes(')')) oc = 'jsfpb_getPage(jsfpb_wdname,\'' + oc + '\',\'\',jsfpb_lastdivid,\'\',\'\',jsfpb_lastver);jQuery(\'body\').scrollTop(0);';
                      str += ' onclick=\"' + oc + '\"';
                   }
                   str += '>';
@@ -1533,7 +1561,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
                      str += '<iframe width=\"' + width + '\" height=\"' + (Math.floor(width * 9/16)) + '\" src=\"https://www.youtube.com/embed/' + lyr.txt + '\" frameborder=\"0\" allowfullscreen></iframe>';
                      str += '</div>';
                      
-                  } else if(Boolean(lyr.txt) || (Boolean(lyr.type) && lyr.type=='textbox') || (Boolean(lyr.type) && lyr.type=='textarea') || (Boolean(lyr.type) && lyr.type=='user' && Boolean(lyr.field_id)) || (Boolean(lyr.type) && lyr.type=='wdata' && Boolean(lyr.wd_id) && Boolean(lyr.field_id)) || (Boolean(lyr.type) && lyr.type=='searchbox' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdataform' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdatalist' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdatacustomlist' && Boolean(lyr.wd_id))) {
+                  } else if(Boolean(lyr.txt) || (Boolean(lyr.type) && lyr.type=='textbox') || (Boolean(lyr.type) && lyr.type=='textarea') || (Boolean(lyr.type) && lyr.type=='captcha') || (Boolean(lyr.type) && lyr.type=='user' && Boolean(lyr.field_id)) || (Boolean(lyr.type) && lyr.type=='wdata' && Boolean(lyr.wd_id) && Boolean(lyr.field_id)) || (Boolean(lyr.type) && lyr.type=='searchbox' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdataform' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdatalist' && Boolean(lyr.wd_id)) || (Boolean(lyr.type) && lyr.type=='jdatacustomlist' && Boolean(lyr.wd_id))) {
                      //alert('here is ' + lyr.type + ', ' + lyr.divname);
                      str += '<div ';
                      str += 'id=\"jsfv_' + unq_id + '_txtdisp\" ';
@@ -1569,6 +1597,18 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
                         if(height != 'auto') inptcss += 'height:' + (height - 8) + 'px;';
                         if(Boolean(lyr.fsz)) inptcss += 'font-size:' + Math.round(eff_ratio * parseInt(lyr.fsz)) + 'px;';
                         str += jsfpb_getautotextarea(jsfpb_flattenstr(lyr.divname,false,true),lyr.txt,inptcss,'','',lyr.tabi);
+                     } else if(Boolean(lyr.type) && lyr.type=='captcha') {
+                        var chars = '2346789abcdefghjkmnprtuvwxyz';
+                        var tempcaptcha;
+                        var tempstr = '';
+                        var tempcnt = 0;
+                        while (tempcnt < 6) {
+                           tempcaptcha = Math.floor(Math.random() * chars.length);
+                           tempstr = tempstr + chars.substring(tempcaptcha,(tempcaptcha+1));
+                           tempcnt = tempcnt + 1;
+                        }
+                        jsfpb_captcha = tempstr;
+                        str += '<img src=\"' + jsfpb_domain + 'secimage/' + tempstr + '.jpg\">';
                      } else if(Boolean(lyr.type) && lyr.type=='searchbox') {
                         str += '<div id=\"' + jsfpb_flattenstr(lyr.divname,false,true) + '\"></div>';
                         str += '\n<scr';
@@ -2114,6 +2154,9 @@ function jsfpb_getautotext(divid,dfault,css,val,classstr,rqd,tabi){
 function jsfpb_getinput(nm,disp) {
    var obj = {};
    var temp = jQuery('#' + nm).val();
+   var dft = jQuery('#' + nm).data('ignoretxt');
+   if(Boolean(temp) && Boolean(dft) && temp==dft) temp = '';
+   
    obj.val = '';
    if(Boolean(temp)) obj.val = temp;
    obj.error = false;
@@ -2121,7 +2164,7 @@ function jsfpb_getinput(nm,disp) {
    obj.name = nm;
    
    // if this is a required field, make sure it's not empty nor the default text
-   if(jQuery('#' + nm).data('required')=='yes' && (jQuery('#' + nm).data('ignoretxt')==temp || !Boolean(temp))) {
+   if(jQuery('#' + nm).data('required')=='yes' && !Boolean(temp)) {
       obj.error = true;
       obj.msg = 'Please enter a value for \"';
       if(Boolean(disp)) obj.msg += disp;
