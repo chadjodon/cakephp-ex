@@ -6,7 +6,8 @@ $baseDir = $_SERVER["DOCUMENT_ROOT"]."innovhub/";
 $baseURL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
 $baseURLSSL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
 
-print "<br>\n".$baseDir;
+print "<br>\nBase Dir: ".$baseDir;
+print "<br>\nCWD: ".getcwd();
 print "<br>\n".$baseURL;
 print "<br>\n".$baseURLSSL;
 print "<br>\n";
