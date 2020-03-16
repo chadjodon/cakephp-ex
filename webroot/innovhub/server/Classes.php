@@ -45,6 +45,7 @@ error_reporting(0);
 //$printstuff = true;
 $maintenance=0;      // maintenance=1 will always display a "temporary unavailable page" unless maintenance=2 parameter is passed
 
+/*
 include $codeDir."Context.php";
 include $codeDir."TrackerArchive.php";
 include $codeDir."glossary.php";
@@ -57,4 +58,20 @@ include $codeDir."version.php";
 include $codeDir."scheduler.php";
 include $codeDir."WebsiteData.php";
 include $codeDir."JSFXMLWriter.php";
+*/
+
+include "Context.php";
+include "TrackerArchive.php";
+include "glossary.php";
+include "survey.php";
+include "mysqlaccess.php";
+include "util.php";
+include "template.php";
+include "useracct.php";
+include "version.php";
+include "scheduler.php";
+include "WebsiteData.php";
+include "JSFXMLWriter.php";
+
+print $codeDir."mysqlaccess.php";
 ?>
