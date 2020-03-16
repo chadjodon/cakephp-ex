@@ -2,7 +2,7 @@
 session_start();
 
 //$baseDir = $_SERVER["DOCUMENT_ROOT"]."/";
-$baseDir = $_SERVER["DOCUMENT_ROOT"]."innovhub/";
+$baseDir = $_SERVER["DOCUMENT_ROOT"]."webroot/innovhub/";
 $baseURL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
 $baseURLSSL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
 
