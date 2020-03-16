@@ -7,7 +7,25 @@
   $user = "cakephp";
   $pw = "KfKbg6fHqEVFxoNd";
   $db = "default";
-  $conn = new mysqli($host, $user, $pw, $db);
+  
+  
+  
+   $host = getenv(strtoupper(getenv("DATABASE_SERVICE_NAME"))."_SERVICE_HOST");
+   $user = getenv("DATABASE_USER");
+   $pw = getenv("DATABASE_PASSWORD");
+  
+   print "<br>\n";
+   print "Host: ".$host;
+   print "<br>\n";
+   print "user: ".$user;
+   print "<br>\n";
+   print "pw: ".$pw;
+   print "<br>\n";
+  
+  
+  
+  //$conn = new mysqli($host, $user, $pw, $db);
+  $conn = new mysqli($host, $user, $pw);
 
   $sql = "SHOW TABLES;";
   $result = $conn->query($sql);
