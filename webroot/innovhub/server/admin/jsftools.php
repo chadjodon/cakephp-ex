@@ -110,10 +110,10 @@ if(getParameter("newtool")==1) {
 
 <div id="pmtools"></div>
 
-<script src="/<?php echo $GLOBALS['jsFolder']; ?>jsf_websitedata.js"></script>
-<script src="/<?php echo $GLOBALS['jsFolder']; ?>jsf_pagebuilder.js"></script>
-<script src="/<?php echo $GLOBALS['jsFolder']; ?>jsf_pagebuilder_admin.js"></script>
-<script src="/<?php echo $GLOBALS['jsFolder']; ?>jsf_pagebuilder_widgets.js"></script>
+<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_websitedata.js"></script>
+<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder.js"></script>
+<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_admin.js"></script>
+<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_widgets.js"></script>
 <script>
    jsfwd_servercontroller = 'server/jsoncontroller.php?format=jsonp';
 
@@ -204,7 +204,7 @@ if(getParameter("newtool")==1) {
          str += '<div style=\"float:left;\">';
          str += '<div style=\"font-size:20px;font-family:verdana;color:#232323;\">';
          str += tools[i].name;
-         str += '<span onclick=\"window.open(\'/<?php echo $GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"margin-left:20px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</span>';
+         str += '<span onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL').$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"margin-left:20px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</span>';
          str += '</div>';
          if(Boolean(tools[i].created)) {
             str += '<div style=\"font-size:12px;font-family:verdana;color:#444444;\">';
@@ -252,7 +252,7 @@ if(getParameter("newtool")==1) {
          str_links += '<div onclick=\"' + str_links_oc + '\" style=\"font-size:14px;font-family:verdana;margin-bottom:1px;color:blue;font-weight:bold;cursor:pointer;\">' + tools[i].name + '</div>';
          str_links += '<div onclick=\"window.open(\'' + tools[i].link + '\');\" style=\"font-size:10px;font-family:verdana;margin-bottom:5px;color:#7777EE;font-weight:normal;cursor:pointer;\">' + tools[i].link + '</div>';
          if(Boolean(tools[i].img)) str_links += '<img onclick=\"' + str_links_oc + '\" src=\"' + tools[i].img + '\" style=\"position:absolute;left:5px;bottom:5px;max-width:200px;max-height:40px;height:auto;width:auto;border-radius:2px;\">';
-         str_links += '<div onclick=\"window.open(\'/<?php echo $GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"position:absolute;bottom:5px;right:5px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</div>';         
+         str_links += '<div onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"position:absolute;bottom:5px;right:5px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</div>';         
          str_links += '</div>';
          
          
@@ -578,7 +578,7 @@ if(getParameter("newtool")==1) {
                pagesstr += 'Page Builder (new & existing pages)';
                pagesstr += '</div>';
             } else {
-               str += '<div onclick=\"window.open(\'/<?php echo $GLOBALS['adminFolder']; ?>admincontroller.php?action=wd_listrows&wd_id=' + jsondata.results[i].wd_id + '&pageLimit=200\');\" style=\"cursor:pointer;font-size:12px;font-family:verdana;color:#772222;margin-top:4px;height:15px;overflow:hidden;\">';
+               str += '<div onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['adminFolder']; ?>admincontroller.php?action=wd_listrows&wd_id=' + jsondata.results[i].wd_id + '&pageLimit=200\');\" style=\"cursor:pointer;font-size:12px;font-family:verdana;color:#772222;margin-top:4px;height:15px;overflow:hidden;\">';
                str += jsondata.results[i].name + ' (' + jsondata.results[i].info + ')';
                str += '</div>';
                if(lastSix=='Values') {
@@ -631,7 +631,7 @@ if(getParameter("newtool")==1) {
                html += '<div id=\"counterreport_' + pmtools_toolid + '_' + jsondata.rows[i].wd_row_id + '\" ';
                html += 'style=\"font-size:28px;font-weight:bold;margin-bottom:2px;color:#111111;text-align:center;\">';
                html += '</div>';
-               html += '<div onclick=\"window.open(\'/<?php echo $GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '&wd_row_id=' + jsondata.rows[i].wd_row_id + '\');event.stopPropagation();\" style=\"text-align:right;font-size:8px;color:blue;cursor:pointer;\">';
+               html += '<div onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '&wd_row_id=' + jsondata.rows[i].wd_row_id + '\');event.stopPropagation();\" style=\"text-align:right;font-size:8px;color:blue;cursor:pointer;\">';
                html += 'edit';
                html += '</div>'; 
                html += '</div>';
@@ -641,7 +641,7 @@ if(getParameter("newtool")==1) {
                str += '<div id=\"' + id + '\" onclick=\"location.href=\'admincontroller.php?action=jsfreports&reportid=' + jsondata.rows[i].wd_row_id + '&toolid=' + pmtools_toolid + '&htag=' + pmtools_htag + '\';\" style=\"margin-top:3px;margin-bottom:5px;cursor:pointer;\">';
                str += '<div style=\"font-size:14px;font-weight:bold;color:#222222;\">';
                str += jsondata.rows[i].name;
-               str += '<span onclick=\"window.open(\'/<?php echo $GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '&wd_row_id=' + jsondata.rows[i].wd_row_id + '\');event.stopPropagation();\" style=\"margin-left:15px;font-size:8px;color:blue;cursor:pointer;\">';
+               str += '<span onclick=\"window.open(\'<?php echo getBaseURL().$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '&wd_row_id=' + jsondata.rows[i].wd_row_id + '\');event.stopPropagation();\" style=\"margin-left:15px;font-size:8px;color:blue;cursor:pointer;\">';
                str += 'edit';
                str += '</span>';
                str += '</div>';
@@ -651,12 +651,12 @@ if(getParameter("newtool")==1) {
                str += '</div>';
             }
          }
-         str += '<div onclick=\"window.open(\'/<?php echo $GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '\');\" style=\"margin-top:5px;margin-bottom:5px;cursor:pointer;\">';
+         str += '<div onclick=\"window.open(\'<?php echo getBaseURL().$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + jsondata.wd_id + '\');\" style=\"margin-top:5px;margin-bottom:5px;cursor:pointer;\">';
          str += '<div style=\"font-size:12px;font-weight:normal;color:#4444;\">';
          str += 'Add a new report';
          str += '</div>';
          str += '</div>';
-         str += '<div onclick=\"window.open(\'/<?php echo $GLOBALS['adminFolder']; ?>admincontroller.php?action=wd_listrows&pageLimit=25&wd_id=' + jsondata.wd_id + '\');\" style=\"margin-top:5px;margin-bottom:5px;cursor:pointer;\">';
+         str += '<div onclick=\"window.open(\'/<?php echo getBaseURL().$GLOBALS['adminFolder']; ?>admincontroller.php?action=wd_listrows&pageLimit=25&wd_id=' + jsondata.wd_id + '\');\" style=\"margin-top:5px;margin-bottom:5px;cursor:pointer;\">';
          str += '<div style=\"font-size:12px;font-weight:normal;color:#4444;\">';
          str += 'List All Reports (all tools)';
          str += '</div>';
@@ -768,7 +768,7 @@ if(getParameter("newtool")==1) {
          str += '<div style=\"font-weight:bold;\">Reports</div>';
          for(var i=0;i<jsondata.rows.length;i++){
             str += '<div ';
-            str += 'onclick=\"location.href=\'/<?php echo $GLOBALS['adminFolder']; ?>admincontroller.php?action=jsfstats&sql=' + pmtools_replaceAll('\'','\\\'',encodeURIComponent(jsondata.rows[i].sql)) + '&name=' + encodeURIComponent(jsondata.rows[i].name) + '&datefield=' + encodeURIComponent(jsondata.rows[i].datefield) + '&backurl=' + encodeURIComponent('/<?php echo $GLOBALS['adminFolder']; ?>admincontroller.php?action=jsftools') + '\';\" ';
+            str += 'onclick=\"location.href=\'<?php echo getBaseURL().$GLOBALS['adminFolder']; ?>admincontroller.php?action=jsfstats&sql=' + pmtools_replaceAll('\'','\\\'',encodeURIComponent(jsondata.rows[i].sql)) + '&name=' + encodeURIComponent(jsondata.rows[i].name) + '&datefield=' + encodeURIComponent(jsondata.rows[i].datefield) + '&backurl=' + encodeURIComponent('<?php echo getBaseURL().$GLOBALS['adminFolder']; ?>admincontroller.php?action=jsftools') + '\';\" ';
             str += 'style=\"cursor:pointer;color:blue;margin:5px;\">';
             str += '&bull; ' + jsondata.rows[i].name;
             str += '</div>';
@@ -801,7 +801,7 @@ if(getParameter("newtool")==1) {
       if(Boolean(jsondata.results) && jsondata.results.length>0){
          str += '<div style=\"font-weight:bold;cursor:pointer;\" onclick=\"window.open(\'<?php echo getBaseURL().$GLOBALS['adminFolder']; ?>admincontroller.php?action=managefiles\');\">Content</div>';
          for(var i=0;i<jsondata.results.length;i++){
-            str += '<div onclick=\"location.href=\'/<?php echo $GLOBALS['adminFolder']; ?>admincontroller.php?action=managefiles&cmsid=' + jsondata.results[i].cmsid + '&htagfilter=,' + pmtools_htag + '\';\" style=\"cursor:pointer;font-size:12px;font-family:verdana;color:#772222;margin-top:4px;height:15px;overflow:hidden;\">';
+            str += '<div onclick=\"location.href=\'<?php echo getBaseURL().$GLOBALS['adminFolder']; ?>admincontroller.php?action=managefiles&cmsid=' + jsondata.results[i].cmsid + '&htagfilter=,' + pmtools_htag + '\';\" style=\"cursor:pointer;font-size:12px;font-family:verdana;color:#772222;margin-top:4px;height:15px;overflow:hidden;\">';
             str += jsondata.results[i].filename + ' (' + jsondata.results[i].title + ')';
             str += '</div>';
          }

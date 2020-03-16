@@ -17,7 +17,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <LINK REL="STYLESHEET" HREF="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['styleDir']; ?>style.css" TYPE="text/css">
-<link rel="stylesheet" href="/style/jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">
+<link rel="stylesheet" href="<?php echo $GLOBALS['baseURLSSL']; ?>style/jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">
 <LINK REL="STYLESHEET" HREF="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/base/jquery-ui.css" TYPE="text/css">
 
 <style type="text/css">
@@ -196,7 +196,7 @@
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="/js/jsf_jsonrequest.js"></script>
+<script src="<?php echo $GLOBALS['baseURLSSL']; ?>js/jsf_jsonrequest.js"></script>
 <script type="text/javascript" language="javascript">
 
 function popup(url, width, height) {
