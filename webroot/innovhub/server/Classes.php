@@ -2,8 +2,8 @@
 session_start();
 
 $baseDir = $_SERVER["DOCUMENT_ROOT"]."/innovhub/";
-$baseURL="https://".$_SERVER['HTTP_HOST']."/innovhub/";
-$baseURLSSL="https://".$_SERVER['HTTP_HOST']."/innovhub/";
+$baseURL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
+$baseURLSSL="http://".$_SERVER['HTTP_HOST']."/innovhub/";
 
 $useDB = TRUE;
 //$dbHost='database';
