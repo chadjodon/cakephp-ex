@@ -616,7 +616,7 @@ function jsfcore_controller() {
          pos_2 = jsfcore_initpaths[(jsfcore_initpaths.length - 2)];
       }
    }
-   alert("position 1: " + pos_1 + ", position 2: " + pos_2);
+   //alert("position 1: " + pos_1 + ", position 2: " + pos_2);
    
    //alert('initpath: ' + initpathname + ' chunked: ' + JSON.stringify(jsfcore_initpaths));
    

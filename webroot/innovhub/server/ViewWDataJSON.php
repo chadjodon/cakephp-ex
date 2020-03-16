@@ -22,9 +22,9 @@ unset($_SESSION['params']);
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta http-equiv='X-UA-Compatible' content='IE=8'>
-  <link rel="stylesheet" href="/style/jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">
-  <script language="javascript" type="text/javascript" src="/js/jsf_websitedata.js"></script>
-  <script language="javascript" type="text/javascript" src="/js/calendar.js"></script>
+  <link rel="stylesheet" href="<?php echo $GLOBALS['baseURLSSL']; ?>style/jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">
+  <script language="javascript" type="text/javascript" src="<?php echo $GLOBALS['baseURLSSL']; ?>js/jsf_websitedata.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo $GLOBALS['baseURLSSL']; ?>js/calendar.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
@@ -197,7 +197,7 @@ var jsfwdorgcallback;
 <!-- div id="jsfwdorgarea" style="padding:10px;margin:10px 10px 40px 10px;border:4px solid #828282;border-radius:8px;width:620px;height:400px;overflow-x:hidden;overflow-y:auto;"></div -->
 <?php } ?>
 
-<div id="jsfwdarea"><IMG SRC="../jsfimages/loading.gif"></div>
+<div id="jsfwdarea">Loading...</div>
 
 </body>
 </html>
