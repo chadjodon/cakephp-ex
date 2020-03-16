@@ -83,7 +83,7 @@ $wd->addField($wd_id,$sid,NULL,"Subtitle",NULL,"TEXT",50,NULL,1,NULL,0,0,FALSE,N
 $wd->addField($wd_id,$sid,NULL,"Short Description",NULL,"TEXTAREA",60,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,"shortdescription");
 $wd->addField($wd_id,$sid,NULL,"Div ID",NULL,"TEXT",70,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,'divid');
 $wd->addField($wd_id,$sid,NULL,"Image",NULL,"MBL_UPL",80,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,NULL);
-$wd->addField($wd_id,$sid,NULL,"Parent","Admin Menu","FOREIGN",90,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,NULL);
+$wd->addField($wd_id,$sid,NULL,"Parent","Admin Menu,title","FOREIGN",90,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,NULL);
 $wd->addField($wd_id,$sid,NULL,"onclick",NULL,"TEXT",100,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,"link");
 $wd->addField($wd_id,$sid,NULL,"Location","menu,bottom,both","DROPDOWN",120,NULL,1,NULL,0,0,FALSE,NULL,NULL,NULL,NULL);
 
@@ -139,6 +139,26 @@ $values[] = $p_wd_row_id;
 $values[] = "Yes";
 $values[] = "YES";
 $values[] = "both";
+$values[] = "11";
+$values[] = "Add User";
+$values[] = "admincontroller.php?action=adduserform";
+$wd->updateMultipleValues($wd_id,$names,$values,$wd_row_id);
+
+
+$wd_row_id = $wd->addRow($wd_id);
+$names = array();
+$values = array();
+$names[] = "parent";
+$names[] = "enabled";
+$names[] = "reqlogin";
+$names[] = "location";
+$names[] = "sequence";
+$names[] = "title";
+$names[] = "link";
+$values[] = $p_wd_row_id;
+$values[] = "Yes";
+$values[] = "YES";
+$values[] = "both";
 $values[] = "20";
 $values[] = "jData";
 $values[] = "admincontroller.php?action=wd_listwebdata";
@@ -163,7 +183,7 @@ $values[] = "JSF Tools";
 $values[] = "admincontroller.php?action=jsftools";
 $wd->updateMultipleValues($wd_id,$names,$values,$wd_row_id);
 
-https://www.plasticsmarkets.org/jsfadmin/admincontroller.php?action=sqlquery
+//https://www.plasticsmarkets.org/jsfadmin/admincontroller.php?action=sqlquery
 
 $wd_row_id = $wd->addRow($wd_id);
 $names = array();
