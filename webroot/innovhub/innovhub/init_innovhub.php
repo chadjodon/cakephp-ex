@@ -56,100 +56,6 @@ $qs["notes"] = $wd->addField($wd_id,$sid,NULL,"notes","","TEXTAREA","50","0","1"
 
 
 
-print "<br><br>------------------------------------<br>Creating: innovhub engagement models<br>";
-$wd_id = $wd->newWebData("innovhub engagement models","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
-$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
-$sid = $wd->addSection($wd_id);
-$qs = array();
-$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
-$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
-$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
-
-
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='No Funding' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Partial Funding' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Fully Funded' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-
-
-print "<br><br>------------------------------------<br>Creating: innovhub talent roles<br>";
-$wd_id = $wd->newWebData("innovhub talent roles","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
-$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
-$sid = $wd->addSection($wd_id);
-$qs = array();
-$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
-$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
-$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
-
-
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Developers' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Engineers' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Designers' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='40', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Architect' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-
-
-print "<br><br>------------------------------------<br>Creating: innovhub types of requests<br>";
-$wd_id = $wd->newWebData("innovhub types of requests","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
-$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
-$sid = $wd->addSection($wd_id);
-$qs = array();
-$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
-$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
-$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
-
-
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cloud Paks' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cross-cloud' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cross-brand' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-
-
-print "<br><br>------------------------------------<br>Creating: innovhub programs<br>";
-$wd_id = $wd->newWebData("innovhub programs","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
-$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
-$sid = $wd->addSection($wd_id);
-$qs = array();
-$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","1","0","1","","0","0",FALSE,"","0","","sequence");
-$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","2","0","1","Yes","0","0",FALSE,"","0","","enabled");
-$qs["teamname"] = $wd->addField($wd_id,$sid,NULL,"Team Name","","TEXT","10","0","1","","0","0",FALSE,"","0","","teamname");
-$qs["leaders"] = $wd->addField($wd_id,$sid,NULL,"Leaders","","TEXT","20","0","1","","0","0",FALSE,"","0","","leaders");
-$qs["description"] = $wd->addField($wd_id,$sid,NULL,"Description","","TEXTAREA","30","0","1","","0","0",FALSE,"","0","","description");
-$qs["notes"] = $wd->addField($wd_id,$sid,NULL,"Notes","","TEXTAREA","40","0","1","","0","0",FALSE,"","0","","notes");
-$qs["model"] = $wd->addField($wd_id,$sid,NULL,"Engagement Model","innovhub engagement models,name","FOREIGNCB","50","0","1","","0","0",FALSE,"","1","","model");
-$qs["talent"] = $wd->addField($wd_id,$sid,NULL,"Type of Talent","innovhub talent roles,name","FOREIGNCB","60","0","1","","0","0",FALSE,"","1","","talent");
-$qs["request"] = $wd->addField($wd_id,$sid,NULL,"Type of Request","innovhub types of requests,name","FOREIGNCB","70","0","1","","0","0",FALSE,"","1","","request");
-$qs["clients"] = $wd->addField($wd_id,$sid,NULL,"Available to specific clents","","TEXT","80","0","0","","0","0",FALSE,"","0","","clients");
-
-
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Garage for Cloud', ".$qs["leaders"]."='Katie Kean', ".$qs["description"]."='Engineering (Solution engineering) John McLean<BR>', ".$qs["notes"]."='Group of Fellows&#44; Distinguished Engineers&#44; cloud architects&#44; engineers..', ".$qs["model"]."='Partial Funding', ".$qs["talent"]."='Developers&#44;Engineers&#44;Designers&#44;Architect', ".$qs["request"]."='Cloud Paks&#44;Cross-cloud&#44;Cross-brand' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='80', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Cloud Surge', ".$qs["leaders"]."='Elly K', ".$qs["description"]."='Drive holistic engagements. For Industry clients&#44; 1:1 dedicated skill. Led by CTL/ICL', ".$qs["model"]."='Partial Funding', ".$qs["talent"]."='Engineers&#44;Architect', ".$qs["request"]."='Cross-brand' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-$wd_row_id = $wd->addRow($wd_id);
-$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='300', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Test client program', ".$qs["leaders"]."='Chad Jodon', ".$qs["description"]."='Wal-mart specific program', ".$qs["model"]."='1', ".$qs["talent"]."='1&#44;2', ".$qs["request"]."='1&#44;2&#44;3', ".$qs["clients"]."='Walmart' WHERE wd_row_id=".$wd_row_id;
-$dbLink->update($query);
-
-
 
 
 
@@ -394,6 +300,202 @@ $dbLink->update($query);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print "<br><br>------------------------------------<br>Creating: innovhub engagement models<br>";
+$wd_id = $wd->newWebData("innovhub engagement models","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
+$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
+$sid = $wd->addSection($wd_id);
+$qs = array();
+$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
+$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
+$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
+
+
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Paid Engagement' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Co-Invest' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Can Invest' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+
+
+print "<br><br>------------------------------------<br>Creating: innovhub talent roles<br>";
+$wd_id = $wd->newWebData("innovhub talent roles","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
+$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
+$sid = $wd->addSection($wd_id);
+$qs = array();
+$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
+$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
+$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
+
+
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Developers' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Engineers' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Designers' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='40', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Architect' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='88', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Data Scientists' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='61', ".$qs["enabled"]."='Yes', ".$qs["name"]."='IBM Garage' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='121', ".$qs["enabled"]."='Yes', ".$qs["name"]."='GBS' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='77', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Subject Matter Experts' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+
+
+print "<br><br>------------------------------------<br>Creating: innovhub types of requests<br>";
+$wd_id = $wd->newWebData("innovhub types of requests","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
+$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
+$sid = $wd->addSection($wd_id);
+$qs = array();
+$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","10","0","1","","0","0",FALSE,"","0","","sequence");
+$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","20","0","1","Yes","0","0",FALSE,"","0","","enabled");
+$qs["name"] = $wd->addField($wd_id,$sid,NULL,"Name","","TEXT","30","0","1","","0","0",FALSE,"","0","","name");
+
+
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cloud Paks/Red Hat' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='20', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cross-cloud' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Cross-brand' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='30', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Analytics' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='39', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Security' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='12', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Blockchain' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='8', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Product Owner' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='89', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Thought Leadership' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='79', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Demos/POC' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='99', ".$qs["enabled"]."='Yes', ".$qs["name"]."='Innovation HUB' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+
+
+print "<br><br>------------------------------------<br>Creating: innovhub programs<br>";
+$wd_id = $wd->newWebData("innovhub programs","","3","chadjodon@hotmail.com","","1","2","-1","NEW","");
+$wd->updateWebDataProperty($wd_id, "htags", "#innovhub ");
+$sid = $wd->addSection($wd_id);
+$qs = array();
+$qs["sequence"] = $wd->addField($wd_id,$sid,NULL,"Sequence","","INT","1","0","1","","0","0",FALSE,"","0","","sequence");
+$qs["enabled"] = $wd->addField($wd_id,$sid,NULL,"Enabled","Yes,No","DROPDOWN","2","0","1","Yes","0","0",FALSE,"","0","","enabled");
+$qs["teamname"] = $wd->addField($wd_id,$sid,NULL,"Team Name","","TEXT","10","0","1","","0","0",FALSE,"","0","","teamname");
+$qs["leaders"] = $wd->addField($wd_id,$sid,NULL,"Leaders","","TEXT","20","0","1","","0","0",FALSE,"","0","","leaders");
+$qs["description"] = $wd->addField($wd_id,$sid,NULL,"Description","","TEXTAREA","30","0","1","","0","0",FALSE,"","0","","description");
+$qs["notes"] = $wd->addField($wd_id,$sid,NULL,"Notes","","TEXTAREA","40","0","1","","0","0",FALSE,"","0","","notes");
+$qs["model"] = $wd->addField($wd_id,$sid,NULL,"Engagement Model","innovhub engagement models,name","FOREIGNCB","50","0","1","","0","0",FALSE,"","1","","model");
+$qs["talent"] = $wd->addField($wd_id,$sid,NULL,"Type of Talent","innovhub talent roles,name","FOREIGNCB","60","0","1","","0","0",FALSE,"","1","","talent");
+$qs["request"] = $wd->addField($wd_id,$sid,NULL,"Type of Request","innovhub types of requests,name","FOREIGNCB","70","0","1","","0","0",FALSE,"","1","","request");
+$qs["clients"] = $wd->addField($wd_id,$sid,NULL,"Available to specific clents","","TEXT","80","0","0","","0","0",FALSE,"","0","","clients");
+
+
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='1', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Garage for Cloud (1)', ".$qs["leaders"]."='Katie Kean', ".$qs["description"]."='Engineering (Solution engineering) John McLean<BR><BR>', ".$qs["notes"]."='Group of Fellows&#44; Distinguished Engineers&#44; cloud architects&#44; engineers..', ".$qs["model"]."='3', ".$qs["talent"]."='Developers&#44;Engineers&#44;Designers&#44;Architect', ".$qs["request"]."='1&#44;2&#44;3&#44;16' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='80', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Cloud Surge', ".$qs["leaders"]."='Elly K', ".$qs["description"]."='Drive holistic engagements. For Industry clients&#44; 1:1 dedicated skill. Led by CTL/ICL', ".$qs["notes"]."='Cross-brand initiative. Targeting 70+ customers. Supports 3 sales plays 1) Build/Manage Containerized Applications&#44; 2) Modernize Applications&#44; and 3) Cloud Paks.<BR> <BR>https://w3.ibm.com/w3publisher/na-sales-enablement/na-cloud-surge<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='6&#44;7', ".$qs["request"]."='3&#44;18' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='3', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Test client program', ".$qs["leaders"]."='Chad Jodon', ".$qs["description"]."='Wal-mart specific program', ".$qs["model"]."='1', ".$qs["talent"]."='1&#44;2', ".$qs["request"]."='1&#44;2&#44;3', ".$qs["clients"]."='Walmart' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["teamname"]."='IBM Garage -CAI (GBS)', ".$qs["leaders"]."='Cortney Knoll /Chinh Vo', ".$qs["description"]."='Scale Garage engagements', ".$qs["notes"]."='Similar to IBM Garage for cloud offerings. When it evolve into a larger-scale GBS transformation&#44; GBS is engaged<BR><BR>https://ibm.seismic.com/Link/Content/DCePqD5iqDdku6qJMGpvaaMw', ".$qs["model"]."='1' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["teamname"]."='IBM Garage -CAI (GBS)', ".$qs["leaders"]."='Cortney Knoll /Chinh Vo', ".$qs["description"]."='Scale Garage engagements', ".$qs["notes"]."='Similar to IBM Garage for cloud offerings. When it evolve into a larger-scale GBS transformation&#44; GBS is engaged', ".$qs["model"]."='1', ".$qs["request"]."='3' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='2', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Garage -CAI (GBS)', ".$qs["leaders"]."='Cortney Knoll /Chinh Vo', ".$qs["description"]."='Scale Garage engagements', ".$qs["notes"]."='Similar to IBM Garage for cloud offerings. When it evolve into a larger-scale GBS transformation&#44; GBS is engaged<BR><BR>https://ibm.seismic.com/Link/Content/DCePqD5iqDdku6qJMGpvaaMw<BR>' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='4', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Garage for Cloud (2)', ".$qs["leaders"]."='Katie Kean', ".$qs["description"]."='Acceleration (aka CPAT) Wendy Toh', ".$qs["notes"]."='accelerating adoption and deployment of IBM Cloud Paks', ".$qs["model"]."='2&#44;3', ".$qs["talent"]."='1&#44;4&#44;5', ".$qs["request"]."='1' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='5', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Garage for Cloud (3)', ".$qs["leaders"]."='Katie Kean', ".$qs["description"]."='Garage Delivery with Chris and Allen Sayles<BR>', ".$qs["notes"]."='17 locations WW. Clients can co-create with Garage team<BR>https://w3.ibm.com/w3publisher/garage<BR><BR>https://w3.ibm.com/w3publisher/sell-garage/offerings<BR>', ".$qs["model"]."='1', ".$qs["talent"]."='1&#44;3&#44;4', ".$qs["request"]."='2' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET  WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='6', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='OpenShift everywhere (GBS)', ".$qs["leaders"]."='Joel Plavin/WW &nbsp;Rick Puckette/NA', ".$qs["description"]."='Small squad of expert talent deployed to drive OCP', ".$qs["notes"]."='GBS is running the OpenShift Everywhere Program for 40 accounts 11 of those are Integrated accounts<BR>https://w3.ibm.com/w3publisher/openshift-everywhere<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='6&#44;8&#44;7', ".$qs["request"]."='1' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='7', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Cloud Solution Centers', ".$qs["leaders"]."='Ken McTigue', ".$qs["description"]."='Over 1M+ must get certified for any cloud deal', ".$qs["notes"]."='Leading the solutioning for all Cloud engagements across IBMincluding GTS&#44; GBS&#44; and Hybrid Cloud<BR><BR>https://www.ibm.com/w3-techblog/ibm-cloud-solutioning-centers/<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='1&#44;8', ".$qs["request"]."='15&#44;1' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='9', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Cloud Engagement Hub', ".$qs["leaders"]."='Ravesh Lala', ".$qs["description"]."='skilled experts provide j2c Strategy&#44; roadmap (comprised of DEs/Fellows)', ".$qs["notes"]."='support strategic Enterprise accounts with their Multicloud journeys. define their respective Cloud journeys based on existing IT landscape; Selected clients in NA and Europe<BR>https://w3.ibm.com/w3publisher/cloud-solutioning-centers/<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='1', ".$qs["request"]."='1&#44;16' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='10', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Redhat Open Innovation Labs', ".$qs["description"]."='Engineers and Developers', ".$qs["notes"]."='https://www.redhat.com/en/services/consulting/open-innovation-labs', ".$qs["model"]."='1', ".$qs["talent"]."='1&#44;2&#44;6', ".$qs["request"]."='1&#44;17' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='11', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Security Portfolio ', ".$qs["leaders"]."='Bob Kalka', ".$qs["description"]."='Technical sales team', ".$qs["notes"]."='Supports entire product portfolio of Security<BR>https://w3.ibm.com/w3publisher/security-strategy<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='8', ".$qs["request"]."='13&#44;17' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='12', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Security Services', ".$qs["leaders"]."='Tim Van den heede', ".$qs["description"]."='Services Sales', ".$qs["notes"]."='Specific focus around &nbsp;Security services', ".$qs["model"]."='1', ".$qs["talent"]."='1&#44;4', ".$qs["request"]."='13' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='13', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Blockchain&#44; WW Tiger team &nbsp;(SWAT teams)', ".$qs["leaders"]."='Jerry Cuomo or Mark Parzygnat', ".$qs["description"]."='Led by SMEs from Development team', ".$qs["notes"]."='Blockfit: effectively qualify blockchain leads and pass them to the right owner within the IBM Blockchain Ecosystem! &nbsp; &nbsp;https://ibm.biz/BdqFgW<BR><BR>https://developer.ibm.com/blockchaindemo/blockfit/<BR>', ".$qs["model"]."='3', ".$qs["talent"]."='6&#44;8&#44;7', ".$qs["request"]."='14&#44;3' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='14', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='IBM Blockchain Solutions &nbsp;(Food Trust&#44; Trade lens&#44; supply chain)', ".$qs["leaders"]."='Alistair Renie', ".$qs["description"]."='Industry solutions with SMEs ', ".$qs["notes"]."='Focused on complete end to end solutions that clients can apply to their industry <BR><BR>https://ibm.biz/BdqFhm<BR>', ".$qs["model"]."='1', ".$qs["talent"]."='8', ".$qs["request"]."='14' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='14', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Data & AI', ".$qs["leaders"]."='Meenagis team (Eddie Danghelin&#44; &nbsp;Giovanni Cararro)', ".$qs["description"]."='WW technical sales team', ".$qs["notes"]."='For any Data & AI projects&#44; technical sales team can provide help', ".$qs["model"]."='3', ".$qs["talent"]."='8&#44;5', ".$qs["request"]."='17' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='14', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Data &AI &nbsp;SWAT/Tiger teams', ".$qs["leaders"]."='Steve Brazil Priya Srinivasan', ".$qs["description"]."='SMEs with Data expertise ', ".$qs["notes"]."='Lab Services teams for Data and AI. &nbsp;Deep expertise around product capabilities', ".$qs["model"]."='1', ".$qs["talent"]."='5', ".$qs["request"]."='12&#44;17' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
+$wd_row_id = $wd->addRow($wd_id);
+$query = "UPDATE wd_".$wd_id." SET ".$qs["sequence"]."='15', ".$qs["enabled"]."='Yes', ".$qs["teamname"]."='Data & AI Elite team', ".$qs["leaders"]."='Beth Smith (not known replacement)', ".$qs["description"]."='SMEs for Data and AI', ".$qs["notes"]."='Deep subject matter experts with Research team- DEs/Fellows and STSMs', ".$qs["model"]."='3', ".$qs["talent"]."='5', ".$qs["request"]."='12&#44;17' WHERE wd_row_id=".$wd_row_id;
+$dbLink->update($query);
 
 
 
