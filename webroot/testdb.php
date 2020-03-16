@@ -1,4 +1,14 @@
 <?php
+   function strip_slashes_mysql_results($line){
+       foreach($line as $key => $value){
+          $result[$key] = str_replace("\'", "'", $value);
+          $result[$key] = str_replace("\\\"", "\"", $result[$key]);
+       }
+       return $result;
+   }
+
+
+
   echo $_SERVER['REQUEST_URI'];
   print "<BR>";
   echo $_SERVER['REQUEST_URL'];
@@ -36,7 +46,7 @@
    $ans = array();
       
    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) $ans[] = $this->strip_slashes_mysql_results($row);
+      while($row = $result->fetch_assoc()) $ans[] = strip_slashes_mysql_results($row);
       $result->free();
    }
    $conn->close();
