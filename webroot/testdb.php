@@ -24,8 +24,7 @@
   
   
   
-  //$conn = new mysqli($host, $user, $pw, $db);
-  $conn = new mysqli($host, $user, $pw);
+  $conn = new mysqli($host, $user, $pw, $db);
 
   $sql = "SHOW TABLES;";
   $result = $conn->query($sql);
