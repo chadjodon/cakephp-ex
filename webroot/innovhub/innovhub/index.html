@@ -264,8 +264,8 @@ function ih_displaypagedprograms(pg,limit) {
       str += ih_showprograms[i].description;
       str += '</div>';
       
-      str += '<div class=\"ih_result_field\" style=\"width:150px;\">';
-      str += ih_showprograms[i].notes;
+      str += '<div class=\"ih_result_field\" style=\"width:180px;\">';
+      str += jsfpb_convertdisplay(jsfpb_convertstring(ih_showprograms[i].notes));
       str += '</div>';
       
       //alert('model: ' + ih_showprograms[i].model);

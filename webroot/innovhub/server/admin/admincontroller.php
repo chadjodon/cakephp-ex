@@ -884,7 +884,7 @@ if(FALSE && 0!=strcmp(substr($_SERVER['SCRIPT_URI'],0,strlen($GLOBALS['baseURLSS
    }
    
    else if (0 == strcmp($action,"addusercloning")) {
-      error_reporting(E_ALL);
+      //error_reporting(E_ALL);
       //ini_set('memory_limit', '128M');
       $page="addusercloning.php";
       $newuserid = $ua->addUser(NULL,TRUE,TRUE);

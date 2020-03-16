@@ -28,6 +28,6 @@
 #ih_results_inner {width:100%;overflow-x:auto;}
 .ih_result {padding:4px;margin:2px;font-size:12px;width:960px;overflow:hidden;}
 .ih_result_odd {background-color:#BBDDFF;}
-.ih_result_field{float:left;margin-right:15px;height:80px;overflow:hidden;}
+.ih_result_field{float:left;margin-right:15px;height:95px;overflow:hidden;}
 .ih_result_header {background-color:#F2F2F2;padding:4px;margin:2px;font-size:12px;width:960px;overflow:hidden;}
 .ih_result_headerfield{float:left;margin-right:15px;height:30px;overflow:hidden;}
