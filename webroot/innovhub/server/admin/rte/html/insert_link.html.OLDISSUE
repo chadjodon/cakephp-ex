@@ -1,0 +1,38 @@
+<script>
+function submitRepEmail() {
+    window.opener.document.getElementById("repemailcomments").value = document.getElementById("comments").value;
+    window.opener.document.getElementById("repemailform").submit();
+    window.close();
+}
+</script>
+
+<style>
+body, td {
+background-color:#ECE9D8;
+font-family:arial;
+font-size:11px;
+}
+input {
+font-family:arial;
+font-size:11px;
+}
+select {
+font-family:arial;
+font-size:11px;
+}
+</style>
+
+<fieldset>
+<legend><b>Insert Comments</b></legend>
+<table width="100%" cellspacing="2" cellpadding="0" border="0">
+<tr>
+<td align="right">Comments: </td>
+<td><textarea id="comments" NAME="comments" rows="4" COLS="40"></TEXTAREA></td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<div align="center"><input type="button" value="Insert Link" onClick="rteInsertHTML();">
+</div>
+</fieldset>

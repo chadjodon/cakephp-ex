@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+<style type="text/css">
+   html, body {margin:0; padding:0;}
+   #wcome   {position:absolute;right:10px;top:5px;color:#FFFFFF;font-family:arial;font-size:12px;}
+   #wcome a {color:#DFDFDF;font-family:arial;font-size:12px;}
+
+   .adminfooter {font-size:10px;font-family:arial;color:#444444;padding:5px;}
+   .clear {clear:both;}
+   .adminlink     {position:relative;padding:6px 0px 4px 10px;margin:0;cursor:pointer;                          width:172px; font-size:12px; font-family:arial; text-decoration:none;color:#222222;}
+   .adminhover    {position:relative;padding:6px 0px 4px 10px;margin:0;cursor:pointer;background-color:#8f8f8f; width:172px; font-size:12px; font-family:arial; text-decoration:none;color:#FFFFFF;}
+   .adminnolink   {position:relative;padding:6px 0px 4px  4px;margin:0;                                         width:172px; font-size:12px; font-family:arial; text-decoration:none;color:#000000; font-weight:bold;}
+   .adminhdrlink  {position:relative;padding:6px 0px 4px  4px;margin:0;cursor:pointer;                          width:172px; font-size:12px; font-family:arial; text-decoration:none;color:#000000; font-weight:bold;}
+   .adminhdrhover  {position:relative;padding:6px 0px 4px  4px;margin:0;cursor:pointer;background-color:#8f8f8f; width:172px; font-size:12px; font-family:arial; text-decoration:none;color:#FFFFFF; font-weight:bold;}
+
+   .adminui_even     {position:relative;background-color:#FFFFFF;width:395px;height:31px;background-image:URL('http://www.222glenwood.org/jsfadmin/bullet.png');background-repeat:no-repeat;}
+   .adminui_odd      {position:relative;background-color:#DEDEDE;width:395px;height:31px;background-image:URL('http://www.222glenwood.org/jsfadmin/bullet.png');;background-repeat:no-repeat;}
+   .adminui_empty    {position:relative;background-color:#FFFFFF;width:395px;height:31px;font-size:12px;font-family:verdana;}
+   .adminui_user     {position:absolute;left:0px;top:0px;width:155px;height:12px;font-size:10px;font-family:arial;color:#333333;overflow:hidden;margin:0;padding:0;}
+   .adminui_date     {position:absolute;left:160px;top:0px;width:75px;height:12px;font-size:10px;font-family:arial;color:#333333;overflow:hidden;margin:0;padding:0;}
+   .adminui_delete   {position:absolute;left:240px;top:0px;width:150px;height:12px;font-size:10px;font-family:arial;color:#333333;overflow:hidden;margin:0;padding:0;text-align:right;}
+   .adminui_delete A {font-size:10px;font-family:arial;color:blue;overflow:hidden;margin:0;padding:0;text-align:right;}
+   .adminui_content  {position:absolute;left:8px;top:14px;width:378px;height:13px;font-size:10px;font-family:arial;color:#000000;overflow:hidden;margin:0;padding:0;}
+
+   .whitebg {background-color:#FFFFFF;}
+   
+   .spacer  {position:relative; margin:0; padding:0; height:20px; width:172px; overflow:hidden;}
+   .divider {position:relative; margin:0; padding:0; height:2px; width:172px; overflow:hidden; background-image:URL('http://www.222glenwood.org/jsfadmin/divider.png'); background-repeat:no-repeat;}
+   .arrow {position:relative;margin:0;padding:0;overflow:hidden;width:172px;background-image:URL('http://www.222glenwood.org/jsfadmin/arrow.png');background-repeat:no-repeat;}
+   
+
+   TR.list_row1 { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px;}
+   TR.list_row2 { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px;}
+   
+   TR.list_row1 A:link { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row1 A:visited { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row1 A:active { background-color: #FFFFFF; font-family : Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row1 A:hover { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:underline;}
+   
+   TR.list_row2 A:link { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row2 A:visited { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row2 A:active { background-color: #B8C9F4; font-family : Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   TR.list_row2 A:hover { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:underline;}
+   
+   TR.list_rowheader{ color : white; background-color : black; font-weight : bold; font-family :  Helvetica; font-size : 14px;}
+   TD.menu {background-color : #000000;}
+   tr.agentRow1 { background-color: #c0c0c0 }
+   tr.agentRow2 { background-color: #ffffff }
+
+   .tinytext A:link { font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   .tinytext A:visited { font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   .tinytext A:active { font-family : Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+   .tinytext A:hover { font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:underline;}
+   .tinytext { font-family :  Helvetica; font-size : 11px;}
+   .normal { font-family :  Helvetica; font-size : 14px;}
+
+.small_table A:link    { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:visited { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:active  { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:hover   { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:underline;}
+.small_table   { color:#000000; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+
+.small_table_header    {text-align: center; color:#000000; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:link    { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:visited { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:active  { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:hover   { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:underline;}
+
+.tableinput {font-size:10px;font-family: Arial;}
+
+
+.reg_table A:link    { color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.reg_table A:visited { color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.reg_table A:active  { color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.reg_table A:hover   { color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:underline;}
+.reg_table   { color:#000000; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+
+.reg_table_header    {text-align: center; color:#000000; font-size:14px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.reg_table_header A:link    { text-align: center; color:BLUE; font-size:14px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.reg_table_header A:visited { text-align: center; color:BLUE; font-size:14px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.reg_table_header A:active  { text-align: center; color:BLUE; font-size:14px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.reg_table_header A:hover   { text-align: center; color:BLUE; font-size:14px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:underline;}
+
+
+.admbtn2 a:link    { 
+        display:inline-block;
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn2_bg.png');
+	background-repeat:repeat-x;
+        color:#000000; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn2 a:visited    { 
+        display:inline-block;
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn2_bg.png');
+	background-repeat:repeat-x;
+        color:#000000; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn2 a:active    { 
+        display:inline-block;
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn2_bg.png');
+	background-repeat:repeat-x;
+        color:#000000; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn2 a:hover    { 
+        display:inline-block;
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn2_bg.png');
+	background-repeat:repeat-x;
+        color:#000000; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+
+
+.admbtn1 a:link    { 
+        display:inline-block; 
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn_bg.png');
+	background-repeat:repeat-x;
+        color:#EEEEEE; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn1 a:visited    { 
+        display:inline-block; 
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn_bg.png');
+	background-repeat:repeat-x;
+        color:#EEEEEE; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn1 a:active    { 
+        display:inline-block; 
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn_bg.png');
+	background-repeat:repeat-x;
+        color:#EEEEEE; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.admbtn1 a:hover    { 
+        display:inline-block; 
+        margin: 0px 3px 2px 3px; 
+        padding: 3px 5px 3px 5px; 
+        text-decoration:none; 
+        font-family:arial; 
+        font-weight:bold; 
+        text-align:center; 
+	background-image:url('http://www.222glenwood.org/jsfimages/btn_bg.png');
+	background-repeat:repeat-x;
+        color:#EEEEEE; 
+        font-size:10pt; 
+        border: 1px solid #AAAAAA; 
+}
+
+.error {
+  color:RED;
+  font-size:12px;
+  font-family:arial;
+  font-weight:bold;
+}
+
+.msg {
+  color:GREEN;
+  font-size:12px;
+  font-family:arial;
+  font-weight:bold;
+}
+
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" language="javascript">
+
+var _maxColHeight = 0;
+var colwidth = 250;
+var colpadding = 7;
+var topheaderheight = 31;
+var subheaderheight = 25;
+var sidebarwidth = 172;
+var subheaderheight = 25;
+var sidefooterheight = 32;
+
+
+function fixWidths() {
+   var winwidth = $(window).width();
+   var winheight = $(window).height();
+   var innerpadding = 5;
+   $('#outercontainer').css('position','relative');
+   $('#outercontainer').css('left',0);
+   $('#outercontainer').css('top',0);
+   $('#outercontainer').css('background-color','#0768b1');
+   $('#outercontainer').css('height',winheight);
+   $('#outercontainer').css('width',winwidth);
+   $('#outercontainer').css('overflow','hidden');
+
+   $('#header').css('position','relative');
+   $('#header').css('background-image','URL(http://www.222glenwood.org/jsfadmin/topbg.png)');
+   $('#header').css('height',topheaderheight);
+   $('#header').css('width',winwidth);
+   $('#header').css('overflow','hidden');
+
+   $('#innercontainer').css('position','relative');
+   $('#innercontainer').css('background-color','#0768b1');
+   $('#innercontainer').css('height',winheight-topheaderheight);
+   $('#innercontainer').css('width',winwidth);
+   $('#innercontainer').css('overflow','hidden');
+
+   $('#innerheader').css('position','relative');
+   $('#innerheader').css('background-color','#0768b1');
+   $('#innerheader').css('height',subheaderheight);
+   $('#innerheader').css('width',winwidth);
+   $('#innerheader').css('overflow','hidden');
+
+   $('#innercontent').css('position','relative');
+   $('#innercontent').css('left',innerpadding);
+   $('#innercontent').css('top',0);
+   $('#innercontent').css('background-color','#FFFFFF');
+   $('#innercontent').css('height',(winheight - (innerpadding + topheaderheight + subheaderheight)));
+   $('#innercontent').css('width',(winwidth - (2 * innerpadding)));
+   $('#innercontent').css('overflow','hidden');
+
+   $('#leftside').css('position','absolute');
+   $('#leftside').css('left',0);
+   $('#leftside').css('top',0);
+   $('#leftside').css('background-color','#CCCCCC');
+   $('#leftside').css('height',(winheight - (innerpadding + topheaderheight + subheaderheight) - sidefooterheight));
+   $('#leftside').css('width',sidebarwidth);
+   $('#leftside').css('overflow-x','hidden');
+   $('#leftside').css('overflow-y','auto');
+
+   $('#leftfooter').css('position','absolute');
+   $('#leftfooter').css('left',0);
+   $('#leftfooter').css('top',(winheight - (innerpadding + topheaderheight + subheaderheight) - sidefooterheight));
+   $('#leftfooter').css('background-color','#CCCCCC');
+   $('#leftfooter').css('height',sidefooterheight);
+   $('#leftfooter').css('width',sidebarwidth);
+   $('#leftfooter').css('overflow','hidden');
+
+   $('#leftsideborder').css('position','absolute');
+   $('#leftsideborder').css('left',sidebarwidth);
+   $('#leftsideborder').css('top',0);
+   $('#leftsideborder').css('background-color','#0768b1');
+   $('#leftsideborder').css('height',(winheight - (innerpadding + topheaderheight + subheaderheight)));
+   $('#leftsideborder').css('width',innerpadding);
+   $('#leftsideborder').css('overflow','hidden');
+
+   _maxColHeight = (winheight - (innerpadding + topheaderheight + subheaderheight));
+   $('#container').css('position','absolute');
+   $('#container').css('left',(sidebarwidth + innerpadding));
+   $('#container').css('top',0);
+   $('#container').css('background-color','#FFFFFF');
+   $('#container').css('height',_maxColHeight);
+   $('#container').css('width',(winwidth - (2 * innerpadding))-(sidebarwidth + innerpadding));
+   $('#container').css('overflow','auto');
+}
+
+$(document).ready(fixWidths);
+window.onresize = fixWidths;
+</script>
+</head>
+<body style="border:0px;padding:0px;margin:0px;">
+
+<div id="outercontainer">
+   <div id="header"><a href="http://www.222glenwood.org/jsfadmin/admincontroller.php"><IMG SRC="http://www.222glenwood.org/jsfadmin/logo.png" border="0"></a></div>
+   <div id="innercontainer">
+      <div id="innerheader">
+         <div id="wcome">
+         Welcome Chad Jodon ( chadjodon@hotmail.com ) &nbsp; &nbsp; <a href="admincontroller.php?action=usermod&userid=1">Account</a> &nbsp; &nbsp; <a href="admincontroller.php?action=logout">Log out</a>          </div>
+      </div>
+      <div id="innercontent">
+         <div id="leftside">
+
+
+
+<!--------------------------------------------------------------------------->
+<!-- Start of left side -->
+   
+   <div class="adminnolink">222 Glenwood</div>
+<div class="divider"></div>               <DIV>
+               <DIV CLASS="adminhdrlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=listusers';" ONMOUSEOVER="this.className='adminhdrhover';" ONMOUSEOUT="this.className='adminhdrlink';">
+                  Users               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=searchusers';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Search Users               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=listusers';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; User List               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=usersegment';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; User Segments               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=userposts';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; User Posts               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=scheduledemails';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Scheduled Emails               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=tracking';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Activity               </Div>
+
+</div>
+<div class="divider"></div>               <DIV>
+               <DIV CLASS="adminhdrlink" onClick="window.location.href='';" ONMOUSEOVER="this.className='adminhdrhover';" ONMOUSEOUT="this.className='adminhdrlink';">
+                  Your Website               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=sitemanagement';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Micro Sites               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=managefiles&adminmid=pages&contenttype_view=1';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Your Pages               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=managefiles&adminmid=snippets&contenttype_view=2';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Your Internal Snippets               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=manageimages';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Your Images               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=managefiles&adminmid=docs&contenttype_view=4';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Your Documents               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=managefiles';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; All Your Content               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=displayallmenus';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Menus               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=viewthemes';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Themes               </Div>
+
+</div>
+<div class="divider"></div>               <DIV>
+               <DIV CLASS="adminhdrlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=wd_listwebdata';" ONMOUSEOVER="this.className='adminhdrhover';" ONMOUSEOUT="this.className='adminhdrlink';">
+                  Developers Only               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=wd_listwebdata';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; jData               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=listsurveys';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Data Lists               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=displayglossaries';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Glossary               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=viewsystemproperties';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; System Properties               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=sqlquery';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; SQL Query               </Div>
+               <DIV CLASS="adminlink" onClick="window.location.href='http://www.222glenwood.org/jsfadmin/admincontroller.php?action=showversionfiles';" ONMOUSEOVER="this.className='adminhover';" ONMOUSEOUT="this.className='adminlink';">
+                  &bull; Show All Files               </Div>
+
+</div>
+
+<!-- End of left side -->
+<!--------------------------------------------------------------------------->
+
+
+         
+         </div>
+         <div id="leftfooter">
+            <div class="adminfooter">Copyright &copy; 2013 jStorefront<br>ver. 1.00.02.26</div>
+         </div>
+         
+         <div id="leftsideborder"></div>
+         <div id="container">
+         <div id="panels" style="position:relative;padding:5px;">
+
+
+<script type="text/javascript">
+      function expanduser() {
+         document.getElementById('usersect').style.display = "";
+         document.getElementById('propertiessect').style.display = "none";
+         document.getElementById('addlsect').style.display = "none";
+         document.getElementById('adminsect').style.display = "none";
+         document.getElementById('relsect').style.display = "none";
+         document.getElementById('usertab').style.backgroundColor="#AAAAAA";
+         document.getElementById('propertiestab').style.backgroundColor="#DDDDDD";
+         document.getElementById('addltab').style.backgroundColor="#DDDDDD";
+         document.getElementById('admintab').style.backgroundColor="#DDDDDD";
+         document.getElementById('reltab').style.backgroundColor="#DDDDDD";
+      }
+
+      function expandproperties() {
+         document.getElementById('usersect').style.display = "none";
+         document.getElementById('propertiessect').style.display = "";
+         document.getElementById('addlsect').style.display = "none";
+         document.getElementById('adminsect').style.display = "none";
+         document.getElementById('relsect').style.display = "none";
+         document.getElementById('usertab').style.backgroundColor="#DDDDDD";
+         document.getElementById('propertiestab').style.backgroundColor="#AAAAAA";
+         document.getElementById('addltab').style.backgroundColor="#DDDDDD";
+         document.getElementById('admintab').style.backgroundColor="#DDDDDD";
+         document.getElementById('reltab').style.backgroundColor="#DDDDDD";
+      }
+
+      function expandaddl() {
+         document.getElementById('usersect').style.display = "none";
+         document.getElementById('propertiessect').style.display = "none";
+         document.getElementById('addlsect').style.display = "";
+         document.getElementById('adminsect').style.display = "none";
+         document.getElementById('relsect').style.display = "none";
+         document.getElementById('usertab').style.backgroundColor="#DDDDDD";
+         document.getElementById('propertiestab').style.backgroundColor="#DDDDDD";
+         document.getElementById('addltab').style.backgroundColor="#AAAAAA";
+         document.getElementById('admintab').style.backgroundColor="#DDDDDD";
+         document.getElementById('reltab').style.backgroundColor="#DDDDDD";
+      }
+
+      function expandadmin() {
+         document.getElementById('usersect').style.display = "none";
+         document.getElementById('propertiessect').style.display = "none";
+         document.getElementById('addlsect').style.display = "none";
+         document.getElementById('adminsect').style.display = "";
+         document.getElementById('relsect').style.display = "none";
+         document.getElementById('usertab').style.backgroundColor="#DDDDDD";
+         document.getElementById('propertiestab').style.backgroundColor="#DDDDDD";
+         document.getElementById('addltab').style.backgroundColor="#DDDDDD";
+         document.getElementById('admintab').style.backgroundColor="#AAAAAA";
+         document.getElementById('reltab').style.backgroundColor="#DDDDDD";
+      }
+
+      function expandrel() {
+         document.getElementById('usersect').style.display = "none";
+         document.getElementById('propertiessect').style.display = "none";
+         document.getElementById('addlsect').style.display = "none";
+         document.getElementById('adminsect').style.display = "none";
+         document.getElementById('relsect').style.display = "";
+         document.getElementById('usertab').style.backgroundColor="#DDDDDD";
+         document.getElementById('propertiestab').style.backgroundColor="#DDDDDD";
+         document.getElementById('addltab').style.backgroundColor="#DDDDDD";
+         document.getElementById('admintab').style.backgroundColor="#DDDDDD";
+         document.getElementById('reltab').style.backgroundColor="#AAAAAA";
+      }
+
+ </script>
+
+
+  <table cellpadding="10" cellspacing="0">
+  <tr align="left" valign="top"><td>
+
+  <table cellpadding="5" cellspacing="0">
+  <tr>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="1" height="1"></td>
+      <td nowrap="nowrap" id="usertab" style="background-color: #AAAAAA;"><a href="#" onclick="expanduser(); return false" ><b>User info</b></a></td>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="5" height="1"></td>
+      <td nowrap="nowrap" id="propertiestab" style="background-color: #DDDDDD;"><a href="#" onclick="expandproperties(); return false" ><b>User Properties</b></a></td>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="5" height="1"></td>
+      <td nowrap="nowrap" id="addltab" style="background-color: #DDDDDD;"><a href="#" onclick="expandaddl();return false" ><b>Other</b></a></td>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="5" height="1"></td>
+      <td nowrap="nowrap" id="admintab" style="background-color: #DDDDDD;"><a href="#" onclick="expandadmin();return false" ><b>User Admin</b></a></td>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="5" height="1"></td>
+      <td nowrap="nowrap" id="reltab" style="background-color: #DDDDDD;"><a href="#" onclick="expandrel();return false" ><b>User Relationships</b></a></td>
+  <td style="background-color: #FFFFFF;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="20" height="1"></td>
+  </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0">
+  <tr><td style="background-color: #AAAAAA;"><img src="http://www.222glenwood.org/jsfimages/pixel.gif" width="800" height="2"></td></tr> 
+  </table>
+  <br>
+
+
+  <div id="usersect" style="display:block;">
+  <form action="http://www.222glenwood.org/jsfadmin/admincontroller.php" method="post">
+  <input type="hidden" name="action" value="modifyuser">
+  <input type="hidden" name="userid" value="24">
+  <input type="hidden" name="ulevel" value="">
+  <table cellpadding="5" cellspacing="1" align="center"><tr valign="top"><td>
+
+  <table border="1">
+  <tr><td colspan="2"><a href="http://www.222glenwood.org/jsfadmin/admincontroller.php?action=useroverride&userid=24">View Site as this user (this will log you out)</a></td></tr>
+  <tr><td bgcolor="lightgrey">User ID</td><td>24</td></tr>
+  <tr><td bgcolor="lightgrey">User Created</td><td>2009-11-02</td></tr>
+  <tr><td bgcolor="lightgrey">Email</td><td><input type="text" name="email" size="25" value="tbarker@tcresidential.com"></td></tr>
+  
+       <tr><td bgcolor="lightgrey">First Name</td><td><input type="text" name="fname" size="25" value="Tom"></td></tr>
+     <tr><td bgcolor="lightgrey">Last Name</td><td><input type="text" name="lname" size="25" value="Barker"></td></tr>
+     <tr><td bgcolor="lightgrey">UserName</td><td><input type="text" name="username" size="25" value="tbarker@tcresidential.com"></td></tr>
+     <tr><td bgcolor="lightgrey">Title</td><td><input type="text" name="title" size="25" value=""></td></tr>
+     <tr>
+         <td bgcolor="lightgrey">Gender </td>
+         <td><input type="radio" name="gender" value="M" >Male 
+         &nbsp; &nbsp <input type="radio" name="gender" value="F" >Female</td>
+     </tr>
+    <tr><td bgcolor="lightgrey">Company Name</td><td><input type="text" name="company" size="25" value=""></td></tr>
+  <tr><td bgcolor="lightgrey">User Type </td><td>
+
+<!-- util.php code to print an array of radio buttons -->
+<table cellpadding="0" cellspacing="0">
+<TR valign="top"><TD><input type="radio" name="usertype" id="usertype1" value="user" CHECKED>User &nbsp;&nbsp;&nbsp;</td><TD><input type="radio" name="usertype" id="usertype2" value="org" >Org &nbsp;&nbsp;&nbsp;</td><TD><input type="radio" name="usertype" id="usertype3" value="SYS" >System &nbsp;&nbsp;&nbsp;</td></TR>
+<TR valign="top"><TD><input type="radio" name="usertype" id="usertype4" value="ADMIN" >Admin &nbsp;&nbsp;&nbsp;</td><TD></TD><TD></TD></TR>
+</table>
+
+</td></tr>
+  <tr>
+    <td bgcolor="lightgrey">Account </td>
+    <td>
+      <input type="radio" name="alive" value="0" >Dormant 
+      &nbsp; &nbsp 
+      <input type="radio" name="alive" value="1" CHECKED>Active
+   </td>
+  </tr>
+  <tr><td bgcolor="lightgrey">Website</td><td><input type="text" name="website" size="25" value=""></td></tr>
+  <tr><td bgcolor="lightgrey">Phone Number</td><td><input type="text" name="phonenum" size="25" value="919-995-1259"></td></tr>
+  <tr><td bgcolor="lightgrey">Fax</td><td><input type="text" name="phonenum2" size="25" value=""></td></tr>
+  <tr><td bgcolor="lightgrey">Alternate</td><td><input type="text" name="phonenum3" size="25" value=""></td></tr>
+  <tr><td bgcolor="lightgrey">Phone Number 4</td><td><input type="text" name="phonenum4" size="25" value=""></td></tr>
+  <TR><TD bgcolor="lightgrey">Source</TD><td></td></TR>
+  <TR><TD bgcolor="lightgrey">Parent</TD><td><input type="text" name="parentid" size="25" value="-1"></td></TR>
+  <TR><TD bgcolor="lightgrey">Parent 2</TD><td><input type="text" name="parentid2" size="25" value="-1"></td></TR>
+  </table>
+</td><td>
+  <table border="1">
+  <tr><td bgcolor="lightgrey">Address</td><td><input type="text" name="addr1" size="40" value="222 Glenwood Ave"></td></tr>
+  <tr><td bgcolor="lightgrey">Address (Cont.)</td><td><input type="text" name="addr2" size="40" value=""></td></tr>
+  <tr><td bgcolor="lightgrey">City</td><td><input type="text" name="city" size="25" value="Raleigh"></td></tr>
+  <tr><td bgcolor="lightgrey">State</td><td>
+     </td>
+  </tr>
+  <tr><td bgcolor="lightgrey">Country</td><td></td></tr>
+  <tr><td bgcolor="lightgrey">Location</td><td>,</td></tr>
+   
+     <TR><TD bgcolor="lightgrey">Site</TD><td></td></TR>
+  <TR><TD bgcolor="lightgrey">Notes</TD><td><div style="max-width:400px;"></div></td></TR>
+
+             
+ </table>
+ </td></tr>
+ <TR><TD colspan="2" align="center"><BR><input type="submit" name="submit" value="Modify User Info"></TD></TR>
+ </table>
+ </form>
+ </div> <!-- end usersect -->
+
+
+
+
+  <div id="propertiessect" style="display:none;">
+            <table cellpadding="2" cellspacing="2" bgcolor="#CCCCCC" border="1" align="center">
+         <tr><td><b>Properties</b></td></tr>
+         <tr><td>
+         <script language="javascript">
+         function expandSection(c,s) {
+           if (document.getElementById(c).checked==true) {
+               document.getElementById(s).style.display = "";
+           } else {
+               document.getElementById(s).style.display = "none";
+           }
+         }
+         </script>
+         <script language = "Javascript">
+         <!-- 
+         
+function clearSection14() {
+document.getElementById("aq10").checked=false;
+document.getElementById("aq4").checked=false;
+document.getElementById("aq5").checked=false;
+document.getElementById("aq6").checked=false;
+document.getElementById("aq8").checked=false;
+}
+
+function clearSection13() {
+document.getElementById("aq11").value='';
+document.getElementById("aq1").value='';
+document.getElementById("aq7").value='';
+document.getElementById("aq2").value='';
+document.getElementById("aq9").checked=false;
+document.getElementById("aq12_0").selected=true;
+}
+         
+         function clearSectionWhenCleared(el,section) {
+            if (el.checked == false) {
+               clearSection(section);
+            }
+         }
+         
+         function clearSection(section) {
+            eval("clearSection"+section+"()");
+         }
+         
+         // -->
+         </script>
+         <script language = "Javascript">   var vf = new FormValidation();  </script>
+         <script language = "Javascript">
+         $$('input').each(function(inputElem) {
+            inputElem.observe("fv:onInvalid", function() { $(this.identify() + "-error").show();}.bind(inputElem));
+            inputElem.observe("fv:onValid", function() { $(this.identify() + "-error").hide();}.bind(inputElem));
+         });
+         </script>
+   
+                     <table width="100%" cellpadding="2" cellspacing="0" border="0">
+            <tr><td>    
+             <table width="100%" align="center" bgcolor="" CELLPADDING="1" CELLSPACING="0" BORDER="0">
+             <form name="cmssurveyform" enctype="multipart/form-data" action="http://www.222glenwood.org/jsfadmin/admincontroller.php" method="POST">
+             <input type="hidden" name="action" value="ss">
+             <input type="hidden" name="userid" value="24">
+                            <input type="hidden" name="phpinclude" value="usermod.php">
+                
+         
+             <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
+             
+                      
+             
+             <input type="hidden" name="survey_id" value="11">
+             <input type="hidden" name="srvy_person_id" value="223">
+         
+                                 <input type="hidden" name="contact_email" value="chadjodon@hotmail.com">
+                  <!-- tr><td>
+                  <table border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                        <td class="label">Contact's Email:&nbsp;</td>
+                        <td><input type="text" name="contact_email" value="chadjodon@hotmail.com" id="txtContactEmail" size="25"></td>
+                     </tr>
+                  </table>
+                  </Td></TR -->
+                        
+         
+                 
+                   <TR><TD valign="top">
+                
+<input type="checkbox"  id="c14" name="check14" value="1" onClick="expandSection('c14', 's14');">
+Profile Display Options<BR>   
+                                <table border="0" cellspacing="0" cellpadding="1" id="s14" style="display: none;">
+               
+                        <TR><TD colspan="2"><H2></H2></td></tr>
+                 
+                                                    <tr ><td colspan="2" class="qoptions">
+                <input type="checkbox" name="aq10" id="aq10" value="YES"  > Display my name                </td></tr>
+                                 <tr ><td colspan="2" class="qoptions">
+                <input type="checkbox" name="aq4" id="aq4" value="YES"  > Display my photo to other residents                </td></tr>
+                                 <tr ><td colspan="2" class="qoptions">
+                <input type="checkbox" name="aq5" id="aq5" value="YES"  > Display my unit number                </td></tr>
+                                 <tr ><td colspan="2" class="qoptions">
+                <input type="checkbox" name="aq6" id="aq6" value="YES"  > Display my contact information                </td></tr>
+                                 <tr ><td colspan="2" class="qoptions">
+                <input type="checkbox" name="aq8" id="aq8" value="YES"  > Display additional information                </td></tr>
+                                                  </table>
+               
+                                 </td></tr>
+               
+                 
+                   <TR><TD valign="top">
+                
+<input type="checkbox" id="c13" name="check13" value="1" style="display: none;">
+   
+                                <table border="0" cellspacing="0" cellpadding="1" id="s13" >
+               
+                        <TR><TD colspan="2"><H2>Additional Information</H2></td></tr>
+                 
+                                                       <tr valign="top" >
+                      <td class="label">222 Unit Number &nbsp;</td>
+                      <td>
+                         <input type="text" name="aq11" value="0" id="aq11" size="15" >
+                         <span id="aq11-error" style="display:none"><b>You must enter a valid number</b></span>
+                         <script>vf.addValidationForField("aq11", "integer", "integer");</script>
+                      </td>
+                   </tr>
+   
+                                   <tr >
+                      <td class="label">Photo &nbsp;</td>
+                      <td>
+                        <input name="aq1" type="file" size="25" id="aq1">
+                      </td>
+                   </tr>
+                                   <tr valign="top" >
+                      <td class="label">Birthday</td>
+                      <td>
+                         <table cellpadding="0" cellspacing="0" border="0">
+                         <tr><td><table cellpadding="0" cellspacing="0"><tr>
+<td>
+</td><td>
+
+</td><td>
+
+</td>
+</tr></table>
+</td><td>&nbsp;&nbsp;</td><td></td></tr>
+                         </table>
+                      </td>
+                   </tr>
+   
+                                                  </table>
+               
+                                 </td></tr>
+               
+               
+                  
+                        
+                     
+                           
+                                          
+            
+                  </form>
+            </table>
+         </td></tr></table>
+                  
+         
+               </td></tr></table>
+   
+      </div>
+
+
+</td></tr>
+</table>
+
+         
+         </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+</body>
+</html>
+

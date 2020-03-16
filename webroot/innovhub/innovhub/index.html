@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="/innovhub/style.css" type="text/css" title="Main Styles" charset="utf-8">    
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Innovation Hub</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+</head>
+<body style="margin:0px;padding:0px;font-family:Roboto;">
+<div id="pmcs"></div>   
+<script language="javascript" type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder_widgets.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder_admin.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_websitedata.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_websitedata_admin.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/calendar.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_core.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_adatood.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_search_v2.js"></script>  
+<script type="text/javascript">
+jsfcore_servercontroller = 'server/jsoncontroller.php?format=jsonp';
+jsfada_servercontroller = jsfcore_servercontroller;
+jsfpb_servercontroller = jsfcore_servercontroller;
+jsfwd_servercontroller = jsfcore_servercontroller;
+jsfcore_logo = '/innovhub/innovhub/logo.png';
+
+
+ jQuery(document).ready(function() {
+    jsfcore_forcehttps = false;
+    jsfcore_menucollapsewidth = 920;
+    jsfcore_max_logowd = 135;
+    jsfcore_footer_height = 0;
+    jsfcore_headermaxwidth = jQuery(window).width();
+    jsfcore_ht = 'innovhub';
+    jsfcore_domain = window.location.protocol + '//' + window.location.host + '/';
+    //jsfcore_domain = 'https://jstorefront.com/';
+    jsfsearch_domain = jsfcore_domain;
+    //jsfcore_testing = true;
+    jsfcore_allowdevmode = true;
+    jsfcore_addhometomenu = false;
+    jsfcore_useaccounts = false;
+    jsfcore_menuiconcolor = '#232323';
+    
+   jsfcore_header_bgcolor = '#FFFFFF';
+   jsfcore_header_color = '#2e2e2e';
+   jsfcore_header_opacity = '1.0';
+   jsfcore_bg_clr_bgcolor = '#FFFFFF';
+   jsfcore_bg_clr_opacity = '0.85';
+   jsfcore_bg_img_bgcolor = '#FFFFFF';
+   //jsfcore_menuiconcolor = '#67bcaf';
+   //jsfcore_menuiconcolor = '#F08D2E';
+    
+    jsfcore_ready_init();
+ });
+ 
+var ih_clientname;
+ 
+function jsfcore_customstructure() {
+   if(jQuery('#jsfcore_topmenulinks').length>0){
+      jQuery('#jsfcore_topmenulinks').css('top','10px');
+      jQuery('#jsfcore_topmenulinks').css('left','185px');
+   }
+   if(jQuery('#jsfcore_logoouter').length>0){
+      jQuery('#jsfcore_logoouter').css('left','17px');
+      jQuery('#jsfcore_logoouter').css('top','16px');
+   }
+}
+
+
+
+
+// Create facets
+var ih_filters = [];
+function ih_getfilters(){
+   jsfada_getFieldPos('innovhub programs','',ih_getfilters_return);
+}
+
+function ih_getfilters_return(wd_id){
+   ih_filters = [];
+   var str = '';
+   var bcstr = '<div id=\"ih_breadcrumb_inner\">';
+   
+   //alert('wd_id: ' + wd_id + ' results: ' + JSON.stringify(jsfada_tablesfields[jsfcore_flattenstr(wd_id,false,true)]));
+   var res = jsfada_tablesfields[jsfcore_flattenstr(wd_id,false,true)].results;
+   for(var i=0;i<res.length;i++){
+      if(res[i].filterfld == '1' || res[i].filterfld==1) {
+         if(res[i].qopts.names.length>0 && res[i].disa!='1') {
+            str += '<div class=\"filters\">';
+            str += '<div class=\"filterlabel\" style=\"font-weight:bold;color:#121212;\">';
+            str += res[i].label;
+            str += '</div>';
+            for(var j=0;j<res[i].qopts.names.length;j++) {
+               var divid = res[i].field_id + '_' + jsfcore_flattenstr(res[i].qopts.values[j],false,true);
+               str += '<div ';
+               str += 'class=\"filteritem ih_unselected\" ';
+               str += 'id=\"' + divid + '\" ';
+               str += 'onclick=\"ih_addfilterselection(\'' + divid + '\');\" ';
+               str += 'data-fieldid=\"' + res[i].field_id + '\" ';
+               str += 'data-map=\"' + res[i].map + '\" ';
+               str += 'data-val=\"' + res[i].qopts.values[j] + '\" ';
+               str += 'data-name=\"' + res[i].qopts.names[j] + '\" ';
+               str += 'data-sel=\"0\" ';
+               str += 'style=\"font-weight:normal;color:#333333;cursor:pointer;\">';
+               str += '<span id=\"xout_' + divid + '\" style=\"display:none;margin-right:8px;\">&#10004;</span>';
+               str += res[i].qopts.descr[j];
+               str += '</div>';
+               
+               bcstr += '<div ';
+               bcstr += 'class=\"bcfilteritem\" ';
+               bcstr += 'id=\"' + divid + '_bc\" ';
+               bcstr += 'onclick=\"ih_addfilterselection(\'' + divid + '\');\" ';
+               bcstr += 'style=\"display:none;\">';
+               bcstr += '<span id=\"xout_' + divid + '\" style=\"margin-right:8px;\">&#10003;</span>';
+               bcstr += res[i].qopts.descr[j];
+               bcstr += '</div>';
+            }
+            str += '</div>';
+            //alert('field: ' + JSON.stringify(res[i]));
+            ih_filters.push(res[i]);
+         }
+      }
+   }
+   jQuery('#ih_filters').html(str);
+   
+   bcstr += '<div style=\"clear:both;\"></div></div>';
+   jQuery('#ih_breadcrumb').html(bcstr);   
+}
+
+var ih_filterselections = [];
+function ih_addfilterselection(divid) {
+   if(jQuery('#' + divid).data('sel') == '0') {
+      jQuery('#' + divid).data('sel','1');
+      jQuery('#' + divid).removeClass('ih_unselected');
+      jQuery('#' + divid).addClass('ih_selected');
+      
+      //additional - xout
+      jQuery('#xout_' + divid).show();
+      
+      //breadcrumb
+      jQuery('#' + divid + '_bc').show();
+      
+   } else {
+      jQuery('#' + divid).data('sel','0');
+      jQuery('#' + divid).removeClass('ih_selected');
+      jQuery('#' + divid).addClass('ih_unselected');
+      
+      //additional - xout
+      jQuery('#xout_' + divid).hide();
+      
+      //breadcrumb
+      jQuery('#' + divid + '_bc').hide();
+      
+   }
+   //alert('selected: ' + divid);
+   ih_showresults();
+}
+
+var ih_showprograms = [];
+function ih_showresults() {
+   
+   if(!ih_programsinitiated) ih_getactivitytypes();
+   
+   if(ih_waiting_types) {
+      setTimeout(ih_showresults,500);
+   } else {
+      ih_showprograms = [];
+      
+      for(var i=0;i<ih_programs.length;i++) {
+         var allowprogram = false;
+         
+         //Check if client name is set, and filter results
+         if(Boolean(ih_programs[i].clients) && (ih_programs[i].clients.toLowerCase()=='all' || ih_programs[i].clients.toLowerCase()=='all clients')) ih_programs[i].clients = '';
+         if (!Boolean(ih_programs[i].clients) || (Boolean(ih_clientname) && jsfcore_flattenstr(ih_programs[i].clients,false,true).includes(jsfcore_flattenstr(ih_clientname,false,true)))) {
+            allowprogram = true;
+         }
+         
+         if(allowprogram) {
+            for(var j=0;j<ih_filters.length;j++) {
+               //alert('vals: ' + ih_programs[i][ih_filters[j].field_id]);
+               var program_vals = ih_programs[i][ih_filters[j].field_id].split(',');
+               
+               for(var k=0;k<ih_filters[j].qopts.names.length;k++) {
+                  var divid = ih_filters[j].field_id + '_' + jsfcore_flattenstr(ih_filters[j].qopts.values[k],false,true);
+                  if(jQuery('#' + divid).data('sel')=='1') {
+                     //alert('divid ' + divid + ' selected');
+                     allowprogram = false;
+                     for(var m=0;m<program_vals.length;m++) {
+                        //alert('vals: ' + jsfcore_flattenstr(program_vals[m],false,true) + ' and ' + jsfcore_flattenstr(ih_filters[j].qopts.values[k],false,true));
+                        var chk1 = (jsfcore_flattenstr(program_vals[m],false,true) == jsfcore_flattenstr(ih_filters[j].qopts.values[k],false,true));
+                        var chk2 = (jsfcore_flattenstr(program_vals[m],false,true) == jsfcore_flattenstr(ih_filters[j].qopts.names[k],false,true));
+                        if(chk1 || chk2) {
+                           allowprogram = true;
+                           break;
+                        }
+                     }
+                  }
+                  if(!allowprogram) break;
+               }
+               if(!allowprogram) break;
+            }
+         }
+         
+         if(allowprogram) ih_showprograms.push(ih_programs[i]);
+      }
+      ih_displaypagedprograms();
+   }
+}
+   
+function ih_displaypagedprograms(pg,limit) {
+   if(!Boolean(pg)) pg = 1;
+   if(!Boolean(limit)) limit = 25;
+   
+   var start_i = (pg - 1) * limit;
+   var end_i = start_i + limit;
+   
+   if(end_i > ih_showprograms.length) end_i = ih_showprograms.length;
+   
+   var pgstr = '';
+   pgstr += '<div id=\"ih_pages\">';
+   if(start_i > 0) pgstr += '<span style=\"font-size:10px;color:blue;cursor:pointer;margin-right:20px;\" onclick=\"ih_displaypagedprograms(' + (pg - 1) + ',' + limit + ');\">&lt; Prev</span>';
+   pgstr += '<span style=\"font-size:10px;color:#232323;\">Showing ' + (start_i + 1) + ' - ' + end_i + ' of ' + ih_showprograms.length + ' Results</span>';
+   if(end_i < ih_showprograms.length) pgstr += '<span style=\"font-size:10px;color:blue;cursor:pointer;margin-left:20px;\" onclick=\"ih_displaypagedprograms(' + (pg - 1) + ',' + limit + ');\">Next &gt;</span>';
+   pgstr += '</div>';
+   jQuery('#ih_paging').html(pgstr);
+   
+   var str = '<div id=\"ih_results_inner\">';
+   
+   str += '<div class=\"ih_result_header\">';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:80px;\">Team</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:80px;\">Leaders</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:100px;\">Descr</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:150px;\"></div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:90px;\">Model</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:90px;\">Talent</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:90px;\">Request</div>';
+   str += '<div class=\"ih_result_headerfield\" style=\"width:90px;\">Clients</div>';
+   str += '<div style=\"clear:both;\"></div>';
+   str += '</div>';
+   
+   
+   for(var i=start_i;i<end_i;i++) {
+      var cls = 'ih_result_odd';
+      if((i%2)==0) cls = 'ih_result_even';
+      str += '<div class=\"ih_result ' + cls + '\">';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:80px;\">';
+      str += ih_showprograms[i].teamname;
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:80px;\">';
+      str += ih_showprograms[i].leaders;
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:100px;\">';
+      str += ih_showprograms[i].description;
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:150px;\">';
+      str += ih_showprograms[i].notes;
+      str += '</div>';
+      
+      //alert('model: ' + ih_showprograms[i].model);
+      
+      str += '<div class=\"ih_result_field\" style=\"width:90px;\">';
+      str += ih_displayarray('model',ih_showprograms[i].model);
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:90px;\">';
+      str += ih_displayarray('talent',ih_showprograms[i].talent);
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:90px;\">';
+      str += ih_displayarray('request',ih_showprograms[i].request);
+      str += '</div>';
+      
+      str += '<div class=\"ih_result_field\" style=\"width:90px;\">';
+      if(Boolean(ih_showprograms[i].clients)) str += ih_displayarray('',ih_showprograms[i].clients);
+      else str += 'All Clients';
+      str += '</div>';
+      
+
+      
+      str += '<div style=\"clear:both;\"></div>';
+      str += '</div>';
+      //alert('program: ' + JSON.stringify(ih_showprograms[i]));
+   }
+   str += '</div>';
+   
+   jQuery('#ih_results').html(str);
+}
+
+function ih_displayarray(fieldid,fieldval) {
+   var vals = '';
+   if(Boolean(fieldval)) {
+      var valarr = fieldval.split(',');
+      for(var j=0;j<valarr.length;j++) {
+         if(valarr[j]!='%E%' && valarr[j]!='%e%' && valarr[j]!='%%%EMPTY%%%') {
+            if(vals.length > 0) vals += ', ';
+            
+            var temp = valarr[j].trim();
+            
+            // See if there's a substitution for this value
+            if(Boolean(fieldid)) {
+               var tempfield = fieldid;
+               if(Boolean(ih_fieldsbyname) && Boolean(ih_fieldsbyname[fieldid])){
+                  tempfield = ih_fieldsbyname[fieldid];
+               }
+               
+               //alert('field id: ' + fieldid + ': ' + tempfield + ': ' + ih_subs[tempfield][temp]);
+               if(Boolean(ih_subs) && Boolean(ih_subs[tempfield]) && Boolean(ih_subs[tempfield][temp])) {
+                  temp = ih_subs[ih_fieldsbyname[fieldid]][temp];
+               }
+            }
+            vals += temp;
+         }
+      }
+   }
+   return vals;
+}
+
+
+var ih_waiting_types = false;
+var ih_programsinitiated = false;
+var ih_programs = [];
+
+function ih_getactivitytypes(){
+   ih_waiting_types = true;
+   ih_programsinitiated = true;
+   var params = '';
+   params += '&cmsenabled=1';
+   params += '&maxcols=20';
+   jsfcore_getwebdata_jsonp('innovhub programs','ih_getactivitytypes_return',params,true);
+}
+
+var ih_fieldsbyname;
+var ih_subs;
+function ih_getactivitytypes_return(jsondata) {
+   jsfcore_ReturnJSON(jsondata);
+   ih_fieldsbyname = jsondata.fieldsbyname;
+   ih_subs = jsondata.fieldsubs;
+   //alert('testing output: ' + JSON.stringify(jsondata));
+   ih_waiting_types = false;
+   ih_programs = jsondata.rows;
+   
+   
+}
+
+
+</script>
+
+</body>
+</html>

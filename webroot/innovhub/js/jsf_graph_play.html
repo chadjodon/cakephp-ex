@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="/jsfcode/jsf_map.js"></script>
+<script src="/jsfcustomcode/pm_wrapscorecard.js"></script>
+</head>
+<body>
+
+
+
+<div id="pmwrap" style="position:relative"></div>
+
+
+<script>
+// Set your specific access token for the wrap scorecard
+pmwrap_accesstoken = '76502286';
+
+// set your specific google key to use
+jsfmap_googlekey = 'AIzaSyCb9hEAztlzWrk-A4aGU0DZheQJvnu5VHY';
+
+// Which elements do you want to display
+pmwrap_drawgraph = true;
+pmwrap_drawexposure = true;
+pmwrap_drawmap = true;
+
+// Draw the  elements in a named div
+pmwrap_scorecard('pmwrap');
+</script>
+
+
+</body>
+</html>

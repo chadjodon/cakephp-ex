@@ -1,0 +1,76 @@
+
+td.regular {font-family: verdana, arial, helvetica, sans-serif;font-size: 12pt;font-weight: bold;color: #000000;padding: 0px;border-style: none; margin: 0px;margin-left: 0px;margin-top: 0px;}
+
+
+.whiteText { color:#FFFFFF; font-size:small; font-weight:bold; vertical-align:top; }
+.smallWhite { color:#FFFFFF; font-size:10pt; font-weight:normal; vertical-align:top; }
+
+.whiteText A:link {     font-family : Verdana; font-size : 12px; color : White; text-decoration:none;}
+.whiteText A:visited {  font-family : Verdana; font-size : 12px; color : White; text-decoration:none;}
+.whiteText A:active {   font-family : Verdana; font-size : 12px; color : White; text-decoration:none;}
+.whiteText A:hover {    font-family : Verdana; font-size : 12px; color : White; text-decoration:underline;}
+.whiteText {            font-family : Verdana; font-size : 12px; color : White; font-weight:bold; vertical-align:top; }
+
+.bigWhiteText { color: white; font-size:16px; font-weight:normal; vertical-align : middle; font-weight : bold;}
+
+.blackTextBigBold { color:#000000; font-size:18px; font-weight:bold; vertical-align:top; }
+.blackText { color:#000000; font-size:14px; font-family : Verdana; font-weight:normal; vertical-align:top; }
+.maroonText { color: Maroon; font-size:14px; font-family : Verdana; font-weight:normal; font-weight : bold;}
+.blackTextBold { color: black; font-size:16px; font-family : Verdana; vertical-align : middle; font-weight : bold;}
+
+.hugetext {color: black; font-size:20px; font-weight:bold; vertical-align : middle;}
+
+A:link { font-family :  Helvetica; font-size : 14px; color : blue; text-decoration:none;}
+A:visited { font-family :  Helvetica; font-size : 14px; color : blue; text-decoration:none;}
+A:active { font-family : Helvetica; font-size : 14px; color : blue; text-decoration:none;}
+A:hover { font-family :  Helvetica; font-size : 14px; color : blue; text-decoration:underline;}
+
+
+TR.tinytext A:link { font-family :  Helvetica; font-size : 12px; color : blue; text-decoration:none;}
+TR.tinytext A:visited { font-family :  Helvetica; font-size : 12px; color : blue; text-decoration:none;}
+TR.tinytext A:active { font-family : Helvetica; font-size : 12px; color : blue; text-decoration:none;}
+TR.tinytext A:hover { font-family :  Helvetica; font-size : 12px; color : blue; text-decoration:underline;}
+TR.tinytext { font-family :  Helvetica; font-size : 12px;}
+.tinytext { font-family :  Helvetica; font-size : 12px;}
+.smallblacktext { color:#000000; font-size:14px; font-weight:normal; vertical-align:top; }
+.normaltext { color:#000000; font-size:16px; font-family : Verdana; font-weight:normal; vertical-align:top; }
+
+
+H2 { font-family : Helvetica; color : black; font-weight : bold; font-size : 18px; vertical-align : bottom; top; }
+H3 { font-family : Helvetica; color : black; font-weight : bold; font-size : 20px; vertical-align : bottom; top; }
+
+TR.list_row1 { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px;}
+TR.list_row2 { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px;}
+
+TR.list_row1 A:link { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row1 A:visited { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row1 A:active { background-color: #FFFFFF; font-family : Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row1 A:hover { background-color: #FFFFFF; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:underline;}
+
+TR.list_row2 A:link { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row2 A:visited { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row2 A:active { background-color: #B8C9F4; font-family : Helvetica; font-size : 11px; color : blue; text-decoration:none;}
+TR.list_row2 A:hover { background-color: #B8C9F4; font-family :  Helvetica; font-size : 11px; color : blue; text-decoration:underline;}
+
+TR.list_rowheader{ color : white; background-color : black; font-weight : bold; font-family :  Helvetica; font-size : 14px;}
+TD.menu {background-color : #000000;}
+tr.agentRow1 { background-color: #c0c0c0 }
+tr.agentRow2 { background-color: #ffffff }
+
+h1.maroon { font-family: Helvetica; color: #000000; font-size: 16px; font-weight:bold; }
+.normal   { font-family: Helvetica; color: #000000; font-size: 12px; font-weight:none; }
+.normalBold { font-family: Helvetica; color: #000000; font-size: 12px; font-weight:bold; }
+
+.small_table A:link    { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:visited { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:active  { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+.small_table A:hover   { color:BLUE; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:underline;}
+.small_table   { color:#000000; font-size:10px; font-family : arial, helvetica, sans-serif; font-weight:normal; vertical-align:top; text-decoration:none;}
+
+.small_table_header    {text-align: center; color:#000000; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:link    { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:visited { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:active  { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:none;}
+.small_table_header A:hover   { text-align: center; color:BLUE; font-size:12px; font-family : arial, helvetica, sans-serif; font-weight:bold; vertical-align:top; text-decoration:underline;}
+
+.admin_main {font-family: verdana, arial, helvetica, sans-serif;font-size: 12pt;font-weight: bold;color: #000000;padding: 0px;border-style: none; margin: 0px;margin-left: 0px;margin-top: 0px;}

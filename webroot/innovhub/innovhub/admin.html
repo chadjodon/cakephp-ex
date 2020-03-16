@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="admin.css" type="text/css" title="Main Styles" charset="utf-8">    
+    <link rel="stylesheet" href="../style/jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">    
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>dtor.me</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+</head>
+<body style="margin:0px;padding:0px;font-family:Roboto;">
+<div id="pmcs"></div>   
+<script language="javascript" type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder_widgets.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_pagebuilder_admin.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_websitedata.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_websitedata_admin.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/calendar.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_core.js"></script>  
+<script language="javascript" type="text/javascript" src="../js/jsf_adatood.js"></script>  
+<script type="text/javascript">
+jsfcore_servercontroller = 'server/jsoncontroller.php?format=jsonp';
+jsfada_servercontroller = jsfcore_servercontroller;
+jsfpb_servercontroller = jsfcore_servercontroller;
+jsfwd_servercontroller = jsfcore_servercontroller;
+
+jsfcore_header_bgcolor = '#FFFFFF';
+jsfcore_header_color = '#2e2e2e';
+jsfcore_header_opacity = '1.0';
+jsfcore_bg_clr_bgcolor = '#FFFFFF';
+jsfcore_bg_clr_opacity = '0.85';
+jsfcore_bg_img_bgcolor = '#FFFFFF';
+//jsfcore_menuiconcolor = '#67bcaf';
+jsfcore_menuiconcolor = '#F08D2E';
+jsfcore_useaccounts = true;
+
+jsfada_ignoreforuser = true;
+jsfcore_logo = '/innovhub/innovhub/logo.png';
+
+
+ jQuery(document).ready(function() {
+    jsfcore_forcehttps = false;
+    jsfcore_ht = 'innovhub';
+    jsfcore_domain = window.location.protocol + '//' + window.location.host + '/';
+    jsfcore_fromemail = 'chj@ibm.com';
+    jsfcore_sitetitle = 'Innovation HUB';
+    
+    //jsfcore_testing = true;
+    jsfcore_ready_init();
+ });
+ 
+
+ 
+ 
+ 
+function jsfcore_custommenu() {
+   if (Boolean(jsfcore_loggedin)) {
+      //use hashtag to gather tables
+      var callback = 'ih_showtabletabs_return';
+      var htag = jsfcore_ht;
+      if(!htag.startsWith('#')) htag = '#' + jsfcore_ht;
+      //jsfwd_testing = true;
+      jsf_searchforwd(jsfcore_globaluser.userid,jsfcore_globaluser.token,htag,'','','',50,callback);
+   } else {
+      ih_showtabletabs_return();
+   }
+}
+
+function ih_showtabletabs_return(jsondata) {
+   var countitems = 0;
+   
+   var obj = {};
+   obj.rows = [];
+   
+   
+   var t = {};
+   t.title = 'Clear Cache';
+   t.onclick = 'window.localStorage.clear();location.reload();alert(\'Cache has been cleared.\');';
+   t.fortabs = 'NO';
+   t.forheader = 'NO';
+   t.forfooter = 'YES';
+   obj.rows.push(t);
+   countitems++;
+   
+   
+   if(Boolean(jsondata) && Boolean(jsondata.results)) {
+      
+      //Figure out haw many tabs we can display, don't go over
+      var maxitems = Math.floor((jsfcore_globalwidth - 22 - 88)/88);
+      //var maxitems = 20;
+      if(Boolean(jsfcore_mobile)) maxitems = 20;
+      
+      jsfada_tablesindex = {};
+      for(var i=0;i<jsondata.results.length;i++) {
+         var tempname = jsondata.results[i].name.trim().toLowerCase();
+         var tempht = jsfcore_ht.trim().toLowerCase();
+         if((tempname != tempht + ' pages')) {
+            jsfada_tablesindex[jsondata.results[i].wd_id] = jsondata.results[i];
+            if(countitems<maxitems) {
+               t = {};
+               var title = jsondata.results[i].name;
+               
+               // Rename known tables
+               if((tempname == tempht + ' programs')) title = 'Programs';
+               else if((tempname == tempht + ' menu')) title = 'Menu Items';
+               else if((tempname == tempht + ' talent roles')) title = 'Roles';
+               else if((tempname == tempht + ' types of requests')) title = 'Request Type';
+               else if((tempname == tempht + ' engagement models')) title = 'Models';
+               else if((tempname == tempht + ' data grab')) title = 'Requests';
+              
+               t.title = title;
+               
+               // Choose carefully between URL and JS - js has no refresh
+               //t.url = jsfcore_basedir + 'list/' + jsondata.rows[i].wd_row_id;
+               //t.onclick = 'jsftodo_displaylist(\'' + jsondata.rows[i].wd_row_id + '\');';
+               t.onclick = 'jsfada_currrecordid = \'\';jsfada_displaytable(\'' + jsondata.results[i].wd_id + '\',\'\',\'\',\'\',jsfada_ignoreforuser);';
+               
+               t.fortabs = 'YES';
+               t.forheader = 'YES';
+               //t.fortabs = jsondata.rows[i].fortabs;
+               //t.forheader = jsondata.rows[i].forheader;
+               //t.forfooter = jsondata.rows[i].forfooter;
+               
+               obj.rows.push(t);
+               //alert('adding menu: ' + JSON.stringify(t));
+               countitems++;
+            }
+         }
+      }
+            
+   }
+   
+   jsfcore_returnmenu(obj);
+   
+   // adjust the screen for adding tabs
+   jsfada_screenheight = jsfcore_globalheight - jsfcore_header_height - jsfcore_footer_height - 10;
+   if(!jsfcore_mobile && Boolean(jsfcore_loggedin)) {
+      // browser and tablet, show tabs, draw border lines
+      jsfcore_globalwidth_pgbldr = jsfcore_globalwidth - 22;
+      jsfada_screenheight = jsfcore_globalheight - jsfcore_header_height - jsfcore_footer_height - 32 - 22;
+      jQuery('#jsfcore_subheader').show();
+      jQuery('#jsfcore_subheader').css('margin-left','5px');
+      jQuery('#jsfcore_subheader').css('z-index','2');
+      jQuery('#jsfcore_body').css('top','-1px');
+      jQuery('#jsfcore_body').css('margin','0px 5px 5px 5px');
+      jQuery('#jsfcore_body').css('padding','5px');
+      jQuery('#jsfcore_body').css('border','1px solid #AAAAAA');
+      jQuery('#jsfcore_body').css('border-bottom-left-radius','5px');
+      jQuery('#jsfcore_body').css('border-bottom-right-radius','5px');
+      jQuery('#jsfcore_body').css('z-index','1');
+      jQuery('#jsfcore_body').css('height', jsfada_screenheight + 'px');
+      jQuery('#jsfcore_body').css('overflow','hidden');
+   }
+}
+
+ 
+ 
+ 
+
+function homepage(){
+   if (Boolean(jsfcore_loggedin)) {
+      //Do something here
+      jsfcore_showPageView('adminhome');
+   } else {
+      jsfcore_showloginpage();
+   }
+   
+}
+
+
+
+</script>
+
+</body>
+</html>

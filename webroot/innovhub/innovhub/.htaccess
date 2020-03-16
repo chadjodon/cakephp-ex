@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^view/(.*)$ index.html
+RewriteRule ^home index.html
