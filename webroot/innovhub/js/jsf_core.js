@@ -195,6 +195,7 @@ function jsfcore_ReturnJSON(jsondata){
 }
 
 function jsfcore_CallJSONP(url) {
+    alert('***chj*** jsfcore_CallJSONP start url: ' + url);
     var script = document.createElement('script');
     script.setAttribute('src', url);
     document.getElementsByTagName('head')[0].appendChild(script);
@@ -558,6 +559,8 @@ function jsfcore_showPageView(pagename,skiphistory){
 
 var jsfcore_initpaths;
 function jsfcore_ready_init() {
+    alert('***chj*** 2. in jsfcore init');
+   
    //alert('jsfcore_ready_init');
    
    var checkdev = window.localStorage.getItem('jsfpb_devmode');
@@ -602,6 +605,7 @@ function jsfcore_ready_init() {
 // One-time when page loads based on URL
 function jsfcore_controller() {
    //alert('jsfcore_controller');
+    alert('***chj*** jsfcore_controller start');
    
    jsfcore_displayFunct = jsfcore_showHomePage;
    jsfcore_displayParam = '';
@@ -1786,6 +1790,7 @@ function jsfcore_choosetab(id) {
 
 
 function jsfcore_fixwidths(){
+    alert('***chj*** jsfcore_fixwidths start');
    //alert('function ' + jsfcore_displayFunct.toString() + ' param: ' + jsfcore_displayParam);
    jsfcore_winwidth = jQuery(window).width();
    jsfcore_globalwidth = jsfcore_winwidth;
@@ -1802,6 +1807,7 @@ function jsfcore_fixwidths(){
    jsfcore_displayFunct(jsfcore_displayParam);
    jsfcore_createmenu();
    jsfcore_updateclasses();   
+   alert('***chj*** jsfcore_fixwidths end');
 }   
    
 function drawMenuIcon(fatter,clr){

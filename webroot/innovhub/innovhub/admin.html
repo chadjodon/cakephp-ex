@@ -54,6 +54,7 @@ jsfcore_logo = '/innovhub/innovhub/logo.png';
     jsfcore_sitetitle = 'Innovation HUB';
     
     //jsfcore_testing = true;
+    alert('***chj*** 1. calling jsfcore init');
     jsfcore_ready_init();
  });
  
@@ -75,6 +76,7 @@ function jsfcore_custommenu() {
 }
 
 function ih_showtabletabs_return(jsondata) {
+   alert('***chj*** ih_showtabletabs_return start');
    var countitems = 0;
    
    var obj = {};
@@ -166,13 +168,14 @@ function ih_showtabletabs_return(jsondata) {
  
 
 function homepage(){
+   alert('***chj*** homepage() start');
    if (Boolean(jsfcore_loggedin)) {
       //Do something here
       jsfcore_showPageView('adminhome');
    } else {
       jsfcore_showloginpage();
    }
-   
+   alert('***chj*** homepage() end');
 }
 
 
