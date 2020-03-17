@@ -1638,6 +1638,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
                         adafld.field_id = lyr.field_id;
                         adafld.wdtype = lyr.wdtype;
                         adafld.divid = 'jsfv_' + unq_id + '_txtdisp';
+                        adafld.label = lyr.txt;
                         jsfpb_visualformelements.push(adafld);
                         if(!Boolean(jsfpb_visualjdata[lyr.wd_id])) jsfpb_visualjdata[lyr.wd_id] = true;
                         if(!Boolean(jsfpb_visualjdatagetrows[lyr.wd_id]) && lyr.wdtype!='new') jsfpb_visualjdatagetrows[lyr.wd_id] = true;
@@ -1862,6 +1863,7 @@ function jsfpb_iteratejdata(jsondata) {
          var flds = jsfada_tablesfields[jsfpb_flattenstr(jsfpb_jdata_currobj.wd_id,false,true)].results;
          for (var j=0;j<flds.length;j++) {
             var fld = flds[j];
+            if(Boolean(jsfpb_jdata_currobj.label)) fld.label = jsfpb_jdata_currobj.label;
             if(fld.field_id == jsfpb_jdata_currobj.field_id) {
                //function jsfada_displayfield(wd_id,wd_row_id,fld,val,wd,classname,auth,autofill) {
                var obj = jsfada_displayfield(jsfpb_jdata_currobj.wd_id,jsfpb_current_wd_row_id,fld,row[fld.field_id],jQuery('#' + jsfpb_jdata_currobj.divid).width(),'',false,true);

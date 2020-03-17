@@ -1490,14 +1490,14 @@ function jsfv_getcurrentdivvalues() {
    temppage.fbld = jQuery('#jsfv_div_fbld').val();
    
    temppage.rqd = '0';
-   if(document.getElementById('jsfv_div_rqd').checked) temppage.rqd = '1';
+   if(jQuery('#jsfv_div_rqd').length > 0 && document.getElementById('jsfv_div_rqd').checked) temppage.rqd = '1';
 
    temppage.tabi = jQuery('#jsfv_div_tabi').val();
    
    temppage.fund = '0';
-   if(document.getElementById('jsfv_div_fund').checked) temppage.fund = '1';
+   if(jQuery('#jsfv_div_fund').length > 0 && document.getElementById('jsfv_div_fund').checked) temppage.fund = '1';
    temppage.fitl = '0';
-   if(document.getElementById('jsfv_div_fitl').checked) temppage.fitl = '1';
+   if(jQuery('#jsfv_div_fitl').length > 0 && document.getElementById('jsfv_div_fitl').checked) temppage.fitl = '1';
    
    temppage.faln = jQuery('#jsfv_div_faln').val();
    temppage.bgclr = jQuery('#jsfv_div_bgclr').val();
