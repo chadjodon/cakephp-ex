@@ -1,0 +1,33 @@
+
+.topmenulink {
+   cursor:pointer;
+   background-color:#FFFFFF;
+   color:#232323;
+   font-size:14px;
+   margin-right:5px;
+   margin-left:5px;
+   float:left;
+   padding:10px 14px;
+   border-bottom:2px solid #FFFFFF;
+}
+
+.topmenulink:hover {
+   border-radius:6px;
+   background-color:#D1D1D1;
+   color:#555555;
+}
+
+
+.filters {margin-bottom:25px;}
+.filterlabel {margin-bottom:3px;padding-bottom:3px;border-bottom:1px solid #DDDDDD;}
+.filteritem {padding:2px;margin:2px;}
+.ih_unselected {background-color:#FFFFFF;}
+.ih_selected {background-color:#E1E1E1;border-radius:2px;}
+.bcfilteritem {float:left;font-size:10px;padding:2px 3px;margin:1px 15px 1px 1px;border-radius:3px;background-color:#E1E1E1;color:#333333;cursor:pointer;}
+.ih_result_OLD {padding:4px;margin:2px;border-bottom:1px solid #F0F0F0;}
+#ih_results_inner {width:100%;overflow-x:auto;}
+.ih_result {padding:4px;margin:2px;font-size:12px;width:960px;overflow:hidden;}
+.ih_result_odd {background-color:#BBDDFF;}
+.ih_result_field{float:left;margin-right:15px;height:95px;overflow:hidden;}
+.ih_result_header {background-color:#F2F2F2;padding:4px;margin:2px;font-size:12px;width:960px;overflow:hidden;}
+.ih_result_headerfield{float:left;margin-right:15px;height:30px;overflow:hidden;}

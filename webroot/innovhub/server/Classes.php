@@ -27,6 +27,7 @@ date_default_timezone_set('America/New_York');
 
 $rootDir=$baseDir."";
 $jsFolder = "js/";
+$styleFolder = "style/";
 $codeFolder = "server/";
 $customCodeFolder = $codeFolder;
 

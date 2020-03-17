@@ -16,8 +16,8 @@ $name = getParameter("name");
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="stylesheet" href="jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">    
-    <link rel="stylesheet" href="style.css" type="text/css" title="Main Styles" charset="utf-8">    
+    <link rel="stylesheet" href="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['styleFolder']; ?>jsf_websitedata.css" type="text/css" title="Main Styles" charset="utf-8">    
+    <link rel="stylesheet" href="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['styleFolder']; ?>style.css" type="text/css" title="Main Styles" charset="utf-8">    
     <meta name="msapplication-tap-highlight" content="no" />
     <title>Visual Builder</title>
     <meta http-equiv="cache-control" content="no-cache">
@@ -34,10 +34,20 @@ $name = getParameter("name");
 <script language="javascript" type="text/javascript" src="<?php echo $GLOBALS['baseURL'].$GLOBALS['jsFolder']; ?>jsf_adatood.js"></script>  
 <script language="javascript" type="text/javascript" src="<?php echo $GLOBALS['baseURL'].$GLOBALS['jsFolder']; ?>jsf_core.js"></script>  
 <script type="text/javascript">
+
+
+jsfpb_domain = '<?php echo $GLOBALS['baseURLSSL']; ?>';
+jsfv_userid = '<?php echo $userid; ?>';
+jsfv_token = '<?php echo $token; ?>';
+jsfpb_codedir = 'server/';
+jsfcore_servercontroller = jsfpb_codedir + 'jsoncontroller.php?format=jsonp';
+jsfada_servercontroller = jsfcore_servercontroller;
+jsfpb_servercontroller = jsfcore_servercontroller;
+//jsfwd_servercontroller = jsfcore_servercontroller;
+jsfpb_jsoncontroller = jsfpb_codedir + 'jsoncontroller.php?format=json';
+
+
 jQuery(document).ready(function() {
-   jsfpb_domain = jsfpb_replaceAll('http:','https:','<?php echo getBaseURL(); ?>');
-   jsfv_userid = '<?php echo $userid; ?>';
-   jsfv_token = '<?php echo $token; ?>';
    jsfv_initadmin('<?php echo $wd_id; ?>','<?php echo $name; ?>','pmcs');
  });
 </script>
