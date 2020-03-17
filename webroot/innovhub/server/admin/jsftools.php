@@ -110,10 +110,10 @@ if(getParameter("newtool")==1) {
 
 <div id="pmtools"></div>
 
-<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_websitedata.js"></script>
-<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder.js"></script>
-<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_admin.js"></script>
-<script src="/<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_widgets.js"></script>
+<script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_websitedata.js"></script>
+<script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder.js"></script>
+<script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_admin.js"></script>
+<script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_widgets.js"></script>
 <script>
    jsfwd_servercontroller = 'server/jsoncontroller.php?format=jsonp';
 
