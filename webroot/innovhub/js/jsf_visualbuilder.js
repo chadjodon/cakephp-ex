@@ -2195,6 +2195,8 @@ function jsfv_createwdform() {
    jQuery('#jsfv_draw_lbox_outer').show();
    
    // requires jsf_search_v2.js
+   jsfsearch_domain = jsfpb_domain;
+   jsfsearch_servercontroller = jsfpb_servercontroller;
    jsfsearch_testinput(divid,-1,'Search','jsfv_createwdform_step1',false,222,16);
 }
 

@@ -1,5 +1,5 @@
 var jsfsearch_domain = 'https://www.plasticsmarkets.org/';
-var jsfada_servercontroller = 'jsfcode/jsonpcontroller.php?jodon=1';
+var jsfsearch_servercontroller = 'jsfcode/jsoncontroller.php?format=jsonp';
 
 //----------------------------------------------------------------------------------
 // how we will make a jsonp call
