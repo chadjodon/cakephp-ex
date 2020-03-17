@@ -533,10 +533,12 @@ function jsfcore_showPageView(pagename,skiphistory){
       jsfcore_currhash = pagename;
       window.location.hash = jsfcore_currhash;
    }
+   alert('***chj*** jsfcore_showPageView: ' + pagename);
    
    //alert('jsfcore_showPageView( ' + pagename + ')');
    
    if (typeof window[pagename] === 'function') {
+      alert('***chj*** jsfcore_showPageView: calling a function.');
       var myFunc = window[pagename];
       myFunc();
    } else {
@@ -879,11 +881,13 @@ function jsfcore_loadinghtml(){
 
 var jsfcore_remember_pagename;
 function jsfcore_showPage(pagename,success) {
+   alert('***chj*** jsfcore_showPage: ' + pagename + ' wd pages: ' + jsfcore_wd_pages);
    if(!Boolean(success)) success = 'jsfcore_updateclasses';
    if(!Boolean(pagename)) pagename = jsfcore_remember_pagename;
    jsfcore_remember_pagename = pagename;
    //alert('jsfcore_showPage: ' + pagename);
    jsfpb_getPage(jsfcore_wd_pages,pagename,jsfcore_globalwidth_pgbldr,'jsfcore_body',success);
+   alert('***chj*** jsfcore_showPage: end');
 }
 
 //--------------------------------------------
