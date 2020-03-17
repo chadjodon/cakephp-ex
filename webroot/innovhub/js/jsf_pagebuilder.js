@@ -106,6 +106,7 @@ function jsfpb_loadpageobject(values,name,ver){
 var jsfpb_lastver;
 var jsfpb_lastdivid;
 function jsfpb_getPage(wdname,pagename,pagewidth,divid,callback,debug,version){
+   alert('***chj*** jsfpb_getPage: start');
    if(Boolean(wdname)) jsfpb_wdname = wdname;
    jsfpb_callback = callback;
    
@@ -126,9 +127,11 @@ function jsfpb_getPage(wdname,pagename,pagewidth,divid,callback,debug,version){
    jsfpb_lastdivid = divid;
    
    jsfpb_QuickJSON('pagebuilder','jsfpb_getPage_return',query,true);
+   alert('***chj*** jsfpb_getPage: end');
 }
 
 function jsfpb_getPage_return(jsondata) {
+   alert('***chj*** jsfpb_getPage_return: start');
    //alert('callback: ' + jsfpb_callback + ' just retreived page: ' + JSON.stringify(jsondata));
    jsfpb_ReturnJSON(jsondata);
    if(!Boolean(jsondata.divid)) jsondata.divid = 'jsfpb_body';
@@ -142,6 +145,7 @@ function jsfpb_getPage_return(jsondata) {
       if(typeof fn === 'function') fn(jsondata);
       jsfpb_callback = '';
    }
+   alert('***chj*** jsfpb_getPage_return: end');
 }
 
 
