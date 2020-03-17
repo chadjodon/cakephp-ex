@@ -890,6 +890,7 @@ function jsfcore_showPage(pagename,success) {
 // User login
 
 function jsfcore_showloginpage() {
+    alert('***chj*** jsfcore_showloginpage start');
    var str =jsfcore_showlogin('');
    jQuery('#jsfcore_body').html(str);
    
@@ -961,6 +962,7 @@ function jsfcore_showloginpage() {
    jQuery('#inputnewpassword_clear').css('border-bottom-left-radius','10px');
    jQuery('#inputnewpassword_clear').css('border-bottom-right-radius','10px');
    jQuery('#inputnewpassword_clear').css('width',(loginwidth - 20) + 'px');
+   alert('***chj*** jsfcore_showloginpage end');
 }
 
 function jsfcore_showloginbox() {
