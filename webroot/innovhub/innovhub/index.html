@@ -68,6 +68,17 @@ jsfcore_logo = '/innovhub/innovhub/logo.png';
  });
  
 var ih_clientname;
+
+function ih_returnsavedata(jsondata){
+   jsfcore_ReturnJSON(jsondata);
+   if(Boolean(jsfada_urls) && jsfada_urls.length>0) {
+      url = jsfada_urls.shift();
+      //alert('calling url: ' + url);
+      jsfcore_CallJSONP(url);
+   } else {
+      jsfcore_showPageView('confirmation');
+   }
+}
  
 function jsfcore_customstructure() {
    if(jQuery('#jsfcore_topmenulinks').length>0){
