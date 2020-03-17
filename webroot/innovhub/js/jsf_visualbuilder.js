@@ -13,6 +13,8 @@ var jsfv_name;
 var jsfv_userid;
 var jsfv_token;
 
+var jsfv_canvasbgclr = '#FFFFFF';
+
 // Initialize tool
 // wd_id: Name of jdata table with name/value pairs (Pagebuilder)
 // name: unique name of this div/layer
@@ -96,7 +98,7 @@ function jsfv_getallpagenames_return(jsondata) {
    jsfv_allbackups = [];
    var str = '';
    if(Boolean(jsondata) && Boolean(jsondata.results) && jsondata.results.length>0) {
-      str += '<select id=\"jsfv_changepage\" onchange=\"location.href=\'jsf_visualbuilder.php?userid=' + jsfv_userid + '&token=' + jsfv_token + '&wd_id=' + encodeURIComponent(jsfv_wd_id) + '&name=\' + encodeURIComponent(jQuery(\'#jsfv_changepage\').val());\">';
+      str += '<select id=\"jsfv_changepage\" onchange=\"location.href=\'' + jsfpb_domain + jsfpb_codedir + 'jsf_visualbuilder.php?userid=' + jsfv_userid + '&token=' + jsfv_token + '&wd_id=' + encodeURIComponent(jsfv_wd_id) + '&name=\' + encodeURIComponent(jQuery(\'#jsfv_changepage\').val());\">';
       str += '<option value=\"\"></option>';
       for(var i=0;i<jsondata.results.length;i++) {
          var temp = jsondata.results[i].substr(8);
@@ -138,7 +140,7 @@ function jsfv_checkbackup() {
       }
       if(!foundbu) {
          jsfv_allbackups.push(buname);
-         jsfv_makecopy(buname,true);
+         jsfv_makecopy(buname,true,'1','INACTIVE');
       }
       //alert('backups: ' + JSON.stringify(jsfv_allbackups));
    } else {
@@ -176,6 +178,7 @@ function jsfv_drawadmindivs_return(jsondata) {
    jQuery('#jsfv_draw_inner').html('');
    var infotext = '';
    var infotext_id = '';
+   var jsfv_fixdim = false;
    
    var coordsdiv = '<div id=\"jsfv_draw_coords\" style=\"z-index:998;position:absolute;left:5px;top:5px;font-size:8px;font-weight:bold;opacity:0.7;background-color:#FFFFFF;padding:4px;border-radius:3px;\"></div>';
    var zoomdiv1 = '<div id=\"jsfv_draw_zoomin\" style=\"z-index:998;position:absolute;right:25px;top:6px;\">' + jsfv_drawresize(true,14,2,'#222222','jsfv_resize(20.0);') + '</div>';
@@ -222,7 +225,7 @@ function jsfv_drawadmindivs_return(jsondata) {
    dropdown += '<div id=\"jsfv_pagedropdown\" style=\"margin-bottom:8px;font-size:10px;color:#292929;display:none;\"></div>';
    dropdown += '<div id=\"jsfv_meta_changes\" style=\"margin-bottom:5px;font-size:10px;color:red;display:none;\">';
    dropdown += '* Pending changes ';
-   dropdown += '<span style=\"color:blue;font-weight:bold;cursor:pointer;\" onclick=\"if(confirm(\'Are you sure you want to undo recent changes?\')) location.href=\'jsf_visualbuilder.php?userid=' + jsfv_userid + '&token=' + jsfv_token + '&wd_id=' + encodeURIComponent(jsfv_wd_id) + '&name=' + encodeURIComponent(jsfv_name) + '\';\">Undo</span>';
+   dropdown += '<span style=\"color:blue;font-weight:bold;cursor:pointer;\" onclick=\"if(confirm(\'Are you sure you want to undo recent changes?\')) location.href=\'' + jsfpb_domain + jsfpb_codedir + 'jsf_visualbuilder.php?userid=' + jsfv_userid + '&token=' + jsfv_token + '&wd_id=' + encodeURIComponent(jsfv_wd_id) + '&name=' + encodeURIComponent(jsfv_name) + '\';\">Undo</span>';
    dropdown += '</div>';
    dropdown += '<div id=\"jsfv_meta_nochanges\" style=\"margin-bottom:5px;font-size:10px;\">No pending changes</div>';
    dropdown += '<div style=\"float:left;margin-right:5px;margin-bottom:5px;\">';
@@ -236,7 +239,21 @@ function jsfv_drawadmindivs_return(jsondata) {
          if(temppage.type == 'header' || Boolean(temppage.infoonly) || Boolean(temppage.oright)) {
             infotext = temppage.infoonly;
             if(!Boolean(infotext)) infotext = '';
-            if(Boolean(temppage.oright) && !isNaN(temppage.oright) && temppage.oright!='0') jsfv_totalht = parseInt(temppage.oright);
+            
+            if(Boolean(temppage.canvasbgclr)) {
+               jsfv_canvasbgclr = temppage.canvasbgclr;
+               if(Boolean(jsfv_canvasbgclr)) jQuery('#jsfv_draw').css('background-color',jsfv_canvasbgclr);
+            }
+            
+            if(Boolean(temppage.fixdim) && temppage.fixdim=='1') {
+               jsfv_fixdim = true;
+            }
+            //document.getElementById('jsfv_fixdim').checked = jsfv_fixdim;
+
+            
+            //if(Boolean(temppage.oright) && !isNaN(temppage.oright) && temppage.oright!='0') jsfv_totalht = parseInt(temppage.oright);
+            if(Boolean(temppage.oright) && !isNaN(temppage.oright) && temppage.oright!='0' && temppage.oright!=0) jsfv_totalht = parseInt(temppage.oright);
+            
             infotext_id = jsondata.rows[i].wd_row_id;
          } else {         
             rmn_arr.push(jsondata.rows[i]);
@@ -297,6 +314,18 @@ function jsfv_drawadmindivs_return(jsondata) {
    dropdown += jsfpb_togglehtml('Additional Configuration','jsfv_extrapagemeta');
    dropdown += '<div id=\"jsfv_extrapagemeta\" style=\"display:none;\">';
    
+   dropdown += '<div style=\"margin-top:15px;margin-bottom:15px;\">';
+   dropdown += '<div style=\"float:left;width:100px;text-align:right;margin-right:10px;font-size:12px;\">';
+   dropdown += 'Canvas Color';
+   dropdown += '</div>';
+   dropdown += '<div style=\"float:left;width:120px;text-align:left;\">';
+   dropdown += '<input id=\"jsfv_canvasbgclr\" data-id=\"' + infotext_id + '\" onkeyup=\"event.stopPropagation();jsfv_changeinfotext=true;jQuery(\'#jsfv_draw\').css(\'background-color\',jQuery(\'#jsfv_canvasbgclr\').val());jQuery(\'#jsfv_canvasbgclr_sw\').css(\'background-color\',jQuery(\'#jsfv_canvasbgclr\').val());\" type=\"text\" style=\"width:100px;font-size:12px;\" value=\"' + jsfv_canvasbgclr + '\">';
+   dropdown += '</div>';
+   dropdown += '<div id=\"jsfv_canvasbgclr_sw\" style=\"float:left;width:20px;height:20px;overflow:hidden;background-color:' + jsfv_canvasbgclr + ';\"></div>';
+   dropdown += '<div style=\"clear:both;\"></div>';
+   dropdown += '</div>';
+
+   
    
    dropdown += '<div style=\"margin-top:15px;margin-bottom:15px;\">';
    dropdown += '<div ';
@@ -316,12 +345,19 @@ function jsfv_drawadmindivs_return(jsondata) {
    dropdown += '<div style=\"clear:both;\"></div>';
    dropdown += '</div>';
    
+   var fixdimchk = '';
+   if(jsfv_fixdim) fixdimchk = ' CHECKED';
+   dropdown += '<div style=\"margin-top:15px;margin-bottom:15px;font-size:10px;\">';
+   dropdown += '<input type=\"checkbox\" onchange=\"event.stopPropagation();jsfv_changeinfotext=true;\" data-id=\"' + infotext_id + '\" id=\"jsfv_fixdim\" value=\"1\"' + fixdimchk + '>';
+   dropdown += ' Keep the same ratio (show full div, no zoom)';
+   dropdown += '</div>';
+   
    dropdown += '<div style=\"margin-top:15px;margin-bottom:15px;\">';
    dropdown += '<div style=\"float:left;margin-right:12px;\">';
    dropdown += '<input type=\"text\" style=\"width:100px;font-size:12px;\" id=\"jsfv_copy_txtfld\" value=\"' + jsfv_name + ' Copy\" onkeyup=\"event.stopPropagation();\">';
    dropdown += '</div>';
    dropdown += '<div ';
-   dropdown += 'onclick=\"var newname=jQuery(\'#jsfv_copy_txtfld\').val();if(Boolean(newname)) jsfv_makecopy(newname); else alert(\'Please enter a valid name for your new page.\');\" ';
+   dropdown += 'onclick=\"var newname=jQuery(\'#jsfv_copy_txtfld\').val();if(Boolean(newname)) jsfv_makecopy(newname,false,\'1\',\'ACTIVE\'); else alert(\'Please enter a valid name for your new page.\');\" ';
    dropdown += 'style=\"float:left;margin-right:10px;width:70px;padding:3px;font-size:8px;text-align:center;border:1px solid #333333;border-radius:3px;cursor:pointer;\" ';
    dropdown += '>';
    dropdown += 'Copy Page</div>';
@@ -579,7 +615,7 @@ function jsfv_formatdivlayer(wd_row_id) {
    jQuery('#jsfv_div_rqd_input').hide();
    jQuery('#jsfv_div_tabi_input').hide();
    
-   if(Boolean(temppage.type) && (temppage.type=='textbox' || temppage.type=='textarea' || temppage.type=='password' || temppage.type=='dropdown' || temppage.type=='statedropdown' || temppage.type=='searchbox')) {
+   if(Boolean(temppage.type) && (temppage.type=='textbox' || temppage.type=='textarea' || temppage.type=='password' || temppage.type=='dropdown' || temppage.type=='captcha' || temppage.type=='statedropdown' || temppage.type=='searchbox')) {
       jQuery('#jsfv_' + wd_row_id).css('border','1px solid #000000');
       jQuery('#jsfv_' + wd_row_id).addClass('jsfv_divlayer_input');
       
@@ -788,6 +824,9 @@ function jsfv_focusdiv(wd_row_id,lf,tp,wd,ht) {
          sel = '';
          if(temppage.type=='searchbox') sel = ' SELECTED';
          str += '<option value=\"searchbox\"' + sel + '>Input Search Textbox</option>';
+         sel = '';
+         if(temppage.type=='captcha') sel = ' SELECTED';
+         str += '<option value=\"captcha\"' + sel + '>CAPTCHA Security</option>';
          sel = '';
          if(temppage.type=='password') sel = ' SELECTED';
          str += '<option value=\"password\"' + sel + '>Password Input</option>';
@@ -1180,7 +1219,7 @@ function jsfv_focusdiv(wd_row_id,lf,tp,wd,ht) {
          str += '</div>';
          str += '<div ';
          str += 'style=\"padding:3px;font-size:8px;text-align:center;border:1px solid #333333;border-radius:3px;width:70px;cursor:pointer;\" ';
-         str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?imageonly=1&userid=9&token=9&prefix=jsfv&wd_id=visualimg&field_id=' + jsfv_wd_row_id + '\');\" ';
+         str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?imageonly=1&userid=9&token=9&prefix=jsfv&wd_id=visualimg&field_id=' + jsfv_wd_row_id + '\');\" ';
          str += '>Upload</div>';
          str += '</div>';
          str += '<div style=\"clear:both;\"></div>';
@@ -1531,6 +1570,11 @@ function jsfv_savechanged(jsondataignore) {
       temppage.type = 'header';
       temppage.infoonly = jQuery('#jsfv_infoonly_txt').val();
       temppage.oright = jQuery('#jsfv_oright_txt').val();
+      
+      temppage.fixdim = '0';
+      if(document.getElementById('jsfv_fixdim').checked) temppage.fixdim = '1';
+      
+      temppage.canvasbgclr = jQuery('#jsfv_canvasbgclr').val();
       var callback = 'jsfv_savechanged';
       var params = '';
       params += '&wd_id=' + encodeURIComponent(jsfv_wd_id);
@@ -1545,6 +1589,8 @@ function jsfv_savechanged(jsondataignore) {
       params += '&value=' + encodeURIComponent(JSON.stringify(temppage));
       params += '&userid=' + encodeURIComponent(jsfv_userid);
       params += '&token=' + encodeURIComponent(jsfv_token);
+      params += '&version=1';
+      params += '&verstatus=' + encodeURIComponent('ACTIVE');
       jsfpb_QuickJSON('submitwd',callback,params);      
    } else {
       // Save all the divs iteratively until they're all gone, then reload
@@ -1587,6 +1633,8 @@ function jsfv_savediv(wd_row_id,temppage,callback) {
    params += '&value=' + encodeURIComponent(JSON.stringify(temppage));
    params += '&userid=' + encodeURIComponent(jsfv_userid);
    params += '&token=' + encodeURIComponent(jsfv_token);
+   params += '&version=1';
+   params += '&verstatus=' + encodeURIComponent('ACTIVE');
    
    //alert('jsfv_savediv: ' + params);
    jsfpb_QuickJSON('submitwd',callback,params);
@@ -1595,7 +1643,7 @@ function jsfv_savediv(wd_row_id,temppage,callback) {
 
 var jsfv_copylist;
 var jsfv_copymsg;
-function jsfv_makecopy(newname,skipmsg) {
+function jsfv_makecopy(newname,skipmsg,version,verstatus) {
    jsfv_copylist = [];
    jsfv_copymsg = '';
    if(!Boolean(skipmsg)) jsfv_copymsg = 'Your visual components have been copied successfully to: \"' + newname + '\"';
@@ -1614,6 +1662,8 @@ function jsfv_makecopy(newname,skipmsg) {
       obj.params += '&value=' + encodeURIComponent(JSON.stringify(temppage));
       obj.params += '&userid=' + encodeURIComponent(jsfv_userid);
       obj.params += '&token=' + encodeURIComponent(jsfv_token);
+      if(Boolean(version)) obj.params += '&version=' + encodeURIComponent(version);
+      if(Boolean(verstatus)) obj.params += '&verstatus=' + encodeURIComponent(verstatus);
       obj.action = 'submitwd';
       
       jsfv_copylist.push(obj);      
