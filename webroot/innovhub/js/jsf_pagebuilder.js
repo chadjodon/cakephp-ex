@@ -131,7 +131,7 @@ function jsfpb_getPage(wdname,pagename,pagewidth,divid,callback,debug,version){
 }
 
 function jsfpb_getPage_return(jsondata) {
-   alert('***chj*** jsfpb_getPage_return: start');
+   alert('***chj*** jsfpb_getPage_return start: ' + JSON.stringify(jsondata));
    //alert('callback: ' + jsfpb_callback + ' just retreived page: ' + JSON.stringify(jsondata));
    jsfpb_ReturnJSON(jsondata);
    if(!Boolean(jsondata.divid)) jsondata.divid = 'jsfpb_body';
@@ -170,6 +170,7 @@ function jsfpb_getPageHTML(jsfpb_page,pagewidth,divid,trackid,userinfo){
       jsfpb_getPage(jsfpb_wdname,pageobj.page,pageobj.width,pageobj.divid);
    }
    
+   alert('***chj*** jsfpb_getPageHTML: looking for visualbuilder pages');
    //alert('internal vbs: ' + JSON.stringify(jsfpb_vbstocall));
    while(Boolean(jsfpb_vbstocall) && jsfpb_vbstocall.length>0) {
       var vobj = jsfpb_vbstocall.shift();
@@ -1250,6 +1251,7 @@ function jsfpb_shorterwdname(wdname) {
 }
 
 function jsfpb_getwebdata_jsonp(wdname,callback,params,checkcache){
+   alert('***chj*** jsfpb_getwebdata_jsonp wdname: ' + wdname + ' params: ' + params);
    var query = '';
    if (Boolean(wdname)) query += '&wdname=' + encodeURIComponent(wdname);
    if (Boolean(params)) query += params;
@@ -1257,6 +1259,7 @@ function jsfpb_getwebdata_jsonp(wdname,callback,params,checkcache){
 }
 
 function jsfpb_drawvisualcomponents(divid,name){
+   alert('***chj*** jsfpb_drawvisualcomponents divid: ' + divid + ' name: ' + name);
    //alert('jsfpb_drawvisualcomponents(' + divid + ',' + name + ')');
    if(!Boolean(jsfpb_wdname) && Boolean(jsfpb_tablename)) jsfpb_wdname = jsfpb_tablename;
    var callback = 'jsfpb_drawvisualcomponents_return';
@@ -1272,6 +1275,7 @@ function jsfpb_drawvisualcomponents(divid,name){
 var jsfpb_drawvisualcomponents_busy = false;
 //var jsfpb_drawvisualcomponents_re;
 function jsfpb_drawvisualcomponents_sync(wdname,callback,params) {
+   alert('***chj*** jsfpb_drawvisualcomponents_sync wdname: ' + wdname);
    if(!jsfpb_drawvisualcomponents_busy) {
       jsfpb_drawvisualcomponents_busy = true;
       //jsfpb_drawvisualcomponents_re = params;
