@@ -37,8 +37,10 @@ $name = getParameter("name");
 
 
 jsfpb_domain = '<?php echo $GLOBALS['baseURLSSL']; ?>';
-jsfv_userid = '<?php echo $userid; ?>';
-jsfv_token = '<?php echo $token; ?>';
+jsfcore_domain = jsfpb_domain;
+jsfsearch_domain = jsfpb_domain;
+jsfada_domain = jsfpb_domain;
+
 jsfpb_codedir = 'server/';
 jsfcore_servercontroller = jsfpb_codedir + 'jsoncontroller.php?format=jsonp';
 jsfada_servercontroller = jsfcore_servercontroller;
@@ -46,6 +48,8 @@ jsfpb_servercontroller = jsfcore_servercontroller;
 //jsfwd_servercontroller = jsfcore_servercontroller;
 jsfpb_jsoncontroller = jsfpb_codedir + 'jsoncontroller.php?format=json';
 
+jsfv_userid = '<?php echo $userid; ?>';
+jsfv_token = '<?php echo $token; ?>';
 
 jQuery(document).ready(function() {
    jsfv_initadmin('<?php echo $wd_id; ?>','<?php echo $name; ?>','pmcs');
