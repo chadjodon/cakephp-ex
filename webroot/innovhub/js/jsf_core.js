@@ -659,7 +659,7 @@ function jsfcore_showHomePage_waitfordata() {
 }
 
 function jsfcore_showHomePage(skipHistory){
-   // ***chj*** future: check if user is logged in and has campaign!!!
+   // future: check if user is logged in and has campaign!!!
    //alert('jsfcore_showHomePage');
    jsfcore_remember_skiphistory = skipHistory;
    //if(!Boolean(jsfcore_informationboxes) || jsfcore_informationboxes.length<1) {

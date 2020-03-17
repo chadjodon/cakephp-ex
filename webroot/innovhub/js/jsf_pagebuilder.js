@@ -538,7 +538,7 @@ function jsfpb_getSlotHTML(jsfpb_page,r,s,wd,divid,trackid,userinfo){
    } else if(jsfpb_page.rows[r].htty!='NA') {
       str += 'min-height:10px;';
    }
-   //***chj*** str += 'overflow:hidden;';
+   // str += 'overflow:hidden;';
    str += '\">';
    var icount = 0;
    for(var i=0;i<jsfpb_page.rows[r].slots[s].layers.length;i++) {
