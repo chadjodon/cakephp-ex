@@ -2115,7 +2115,7 @@ if(FALSE && 0!=strcmp(substr($_SERVER['SCRIPT_URI'],0,strlen($GLOBALS['baseURLSS
    
    
    else if (0==strcmp($action,"jsftools")) {
-      error_reporting(E_ALL);
+      //error_reporting(E_ALL);
       $page = "jsftools.php";
    }
    

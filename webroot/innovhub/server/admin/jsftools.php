@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 unset($_SESSION['webdata']);
 
 
@@ -204,7 +204,7 @@ if(getParameter("newtool")==1) {
          str += '<div style=\"float:left;\">';
          str += '<div style=\"font-size:20px;font-family:verdana;color:#232323;\">';
          str += tools[i].name;
-         str += '<span onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL').$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"margin-left:20px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</span>';
+         str += '<span onclick=\"window.open(\'<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['codeFolder']; ?>ViewWDataJSON.php?admin=1&wd_id=' + encodeURIComponent('Tools and Widgets') + '&wd_row_id=' + tools[i].wd_row_id + '\');\" style=\"margin-left:20px;color:BLUE;font-size:8px;cursor:pointer;\">[edit]</span>';
          str += '</div>';
          if(Boolean(tools[i].created)) {
             str += '<div style=\"font-size:12px;font-family:verdana;color:#444444;\">';
