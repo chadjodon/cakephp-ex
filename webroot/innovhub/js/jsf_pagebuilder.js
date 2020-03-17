@@ -106,7 +106,6 @@ function jsfpb_loadpageobject(values,name,ver){
 var jsfpb_lastver;
 var jsfpb_lastdivid;
 function jsfpb_getPage(wdname,pagename,pagewidth,divid,callback,debug,version){
-   alert('***chj*** jsfpb_getPage: start');
    if(Boolean(wdname)) jsfpb_wdname = wdname;
    jsfpb_callback = callback;
    
@@ -127,11 +126,9 @@ function jsfpb_getPage(wdname,pagename,pagewidth,divid,callback,debug,version){
    jsfpb_lastdivid = divid;
    
    jsfpb_QuickJSON('pagebuilder','jsfpb_getPage_return',query,true);
-   alert('***chj*** jsfpb_getPage: end');
 }
 
 function jsfpb_getPage_return(jsondata) {
-   alert('***chj*** jsfpb_getPage_return start: ' + JSON.stringify(jsondata));
    //alert('callback: ' + jsfpb_callback + ' just retreived page: ' + JSON.stringify(jsondata));
    jsfpb_ReturnJSON(jsondata);
    if(!Boolean(jsondata.divid)) jsondata.divid = 'jsfpb_body';
@@ -145,7 +142,6 @@ function jsfpb_getPage_return(jsondata) {
       if(typeof fn === 'function') fn(jsondata);
       jsfpb_callback = '';
    }
-   alert('***chj*** jsfpb_getPage_return: end');
 }
 
 
@@ -170,7 +166,6 @@ function jsfpb_getPageHTML(jsfpb_page,pagewidth,divid,trackid,userinfo){
       jsfpb_getPage(jsfpb_wdname,pageobj.page,pageobj.width,pageobj.divid);
    }
    
-   alert('***chj*** jsfpb_getPageHTML: looking for visualbuilder pages');
    //alert('internal vbs: ' + JSON.stringify(jsfpb_vbstocall));
    while(Boolean(jsfpb_vbstocall) && jsfpb_vbstocall.length>0) {
       var vobj = jsfpb_vbstocall.shift();
@@ -1251,7 +1246,6 @@ function jsfpb_shorterwdname(wdname) {
 }
 
 function jsfpb_getwebdata_jsonp(wdname,callback,params,checkcache){
-   alert('***chj*** jsfpb_getwebdata_jsonp wdname: ' + wdname + ' callback: ' + callback + ' params: ' + params);
    var query = '';
    if (Boolean(wdname)) query += '&wdname=' + encodeURIComponent(wdname);
    if (Boolean(params)) query += params;
@@ -1259,7 +1253,6 @@ function jsfpb_getwebdata_jsonp(wdname,callback,params,checkcache){
 }
 
 function jsfpb_drawvisualcomponents(divid,name){
-   alert('***chj*** jsfpb_drawvisualcomponents divid: ' + divid + ' name: ' + name);
    //alert('jsfpb_drawvisualcomponents(' + divid + ',' + name + ')');
    if(!Boolean(jsfpb_wdname) && Boolean(jsfpb_tablename)) jsfpb_wdname = jsfpb_tablename;
    var callback = 'jsfpb_drawvisualcomponents_return';
@@ -1275,7 +1268,6 @@ function jsfpb_drawvisualcomponents(divid,name){
 var jsfpb_drawvisualcomponents_busy = false;
 //var jsfpb_drawvisualcomponents_re;
 function jsfpb_drawvisualcomponents_sync(wdname,callback,params) {
-   alert('***chj*** jsfpb_drawvisualcomponents_sync wdname: ' + wdname);
    if(!jsfpb_drawvisualcomponents_busy) {
       jsfpb_drawvisualcomponents_busy = true;
       //jsfpb_drawvisualcomponents_re = params;
@@ -1302,7 +1294,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
    //if(jsfpb_devmode) alert('displaying ' + jsondata.rows.length + ' records: ' + JSON.stringify(jsondata.rows));
    jsfpb_ReturnJSON(jsondata);
    var str = '';
-   alert('***chj*** jsfpb_drawvisualcomponents_return start: ' + JSON.stringify(jsondata));
+   
    // create a list of jdata fields to display
    jsfpb_visualformelements = [];
    jsfpb_visualformlists = [];

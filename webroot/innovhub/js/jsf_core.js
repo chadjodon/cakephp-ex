@@ -195,7 +195,6 @@ function jsfcore_ReturnJSON(jsondata){
 }
 
 function jsfcore_CallJSONP(url) {
-    alert('***chj*** jsfcore_CallJSONP start url: ' + url);
     var script = document.createElement('script');
     script.setAttribute('src', url);
     document.getElementsByTagName('head')[0].appendChild(script);
@@ -533,12 +532,10 @@ function jsfcore_showPageView(pagename,skiphistory){
       jsfcore_currhash = pagename;
       window.location.hash = jsfcore_currhash;
    }
-   alert('***chj*** jsfcore_showPageView: ' + pagename);
    
    //alert('jsfcore_showPageView( ' + pagename + ')');
    
    if (typeof window[pagename] === 'function') {
-      alert('***chj*** jsfcore_showPageView: calling a function.');
       var myFunc = window[pagename];
       myFunc();
    } else {
@@ -561,8 +558,6 @@ function jsfcore_showPageView(pagename,skiphistory){
 
 var jsfcore_initpaths;
 function jsfcore_ready_init() {
-    alert('***chj*** 2. in jsfcore init');
-   
    //alert('jsfcore_ready_init');
    
    var checkdev = window.localStorage.getItem('jsfpb_devmode');
@@ -607,7 +602,6 @@ function jsfcore_ready_init() {
 // One-time when page loads based on URL
 function jsfcore_controller() {
    //alert('jsfcore_controller');
-    alert('***chj*** jsfcore_controller start');
    
    jsfcore_displayFunct = jsfcore_showHomePage;
    jsfcore_displayParam = '';
@@ -881,20 +875,17 @@ function jsfcore_loadinghtml(){
 
 var jsfcore_remember_pagename;
 function jsfcore_showPage(pagename,success) {
-   alert('***chj*** jsfcore_showPage: ' + pagename + ' wd pages: ' + jsfcore_wd_pages);
    if(!Boolean(success)) success = 'jsfcore_updateclasses';
    if(!Boolean(pagename)) pagename = jsfcore_remember_pagename;
    jsfcore_remember_pagename = pagename;
    //alert('jsfcore_showPage: ' + pagename);
    jsfpb_getPage(jsfcore_wd_pages,pagename,jsfcore_globalwidth_pgbldr,'jsfcore_body',success);
-   alert('***chj*** jsfcore_showPage: end');
 }
 
 //--------------------------------------------
 // User login
 
 function jsfcore_showloginpage() {
-    alert('***chj*** jsfcore_showloginpage start');
    var str =jsfcore_showlogin('');
    jQuery('#jsfcore_body').html(str);
    
@@ -966,7 +957,6 @@ function jsfcore_showloginpage() {
    jQuery('#inputnewpassword_clear').css('border-bottom-left-radius','10px');
    jQuery('#inputnewpassword_clear').css('border-bottom-right-radius','10px');
    jQuery('#inputnewpassword_clear').css('width',(loginwidth - 20) + 'px');
-   alert('***chj*** jsfcore_showloginpage end');
 }
 
 function jsfcore_showloginbox() {
@@ -1796,7 +1786,6 @@ function jsfcore_choosetab(id) {
 
 
 function jsfcore_fixwidths(){
-    alert('***chj*** jsfcore_fixwidths start');
    //alert('function ' + jsfcore_displayFunct.toString() + ' param: ' + jsfcore_displayParam);
    jsfcore_winwidth = jQuery(window).width();
    jsfcore_globalwidth = jsfcore_winwidth;
@@ -1813,7 +1802,6 @@ function jsfcore_fixwidths(){
    jsfcore_displayFunct(jsfcore_displayParam);
    jsfcore_createmenu();
    jsfcore_updateclasses();   
-   alert('***chj*** jsfcore_fixwidths end');
 }   
    
 function drawMenuIcon(fatter,clr){
