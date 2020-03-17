@@ -205,6 +205,26 @@ $values[] = "admincontroller.php?action=sqlquery";
 $wd->updateMultipleValues($wd_id,$names,$values,$wd_row_id);
 
 
+$wd_row_id = $wd->addRow($wd_id);
+$names = array();
+$values = array();
+$names[] = "parent";
+$names[] = "enabled";
+$names[] = "reqlogin";
+$names[] = "location";
+$names[] = "sequence";
+$names[] = "title";
+$names[] = "link";
+$values[] = $p_wd_row_id;
+$values[] = "Yes";
+$values[] = "YES";
+$values[] = "both";
+$values[] = "50";
+$values[] = "Tracking";
+$values[] = "admincontroller.php?action=tracking";
+$wd->updateMultipleValues($wd_id,$names,$values,$wd_row_id);
+
+
 
 $wd_id = $wd->newWebData("Tools and Widgets Menu","",3,"chadjodon@hotmail.com","",1,0);
 $wd->updateWebDataProperty($wd_id, "htags", "#system #menu #toolswidgets ");

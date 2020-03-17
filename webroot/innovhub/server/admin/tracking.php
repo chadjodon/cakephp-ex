@@ -23,7 +23,7 @@ if ($limit==NULL) $limit = 50;
 $table = getParameter("table");
 if ($table==NULL) $table = "trackerarch";
 
-$basicurl = getBaseURL()."jsfadmin/admincontroller.php?action=tracking&limit=".$limit;
+$basicurl = getBaseURL().$GLOBALS['adminFolder']."admincontroller.php?action=tracking&limit=".$limit;
 $b_searchstr = "&searchstr=".urlencode($searchstr);
 $b_searchstr .= "&viewstr=".urlencode($viewstr);
 $b_searchstr .= "&actionstr=".urlencode($actionstr);

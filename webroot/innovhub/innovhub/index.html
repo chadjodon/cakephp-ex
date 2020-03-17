@@ -109,6 +109,7 @@ function ih_getfilters_return(wd_id){
                str += 'data-map=\"' + res[i].map + '\" ';
                str += 'data-val=\"' + res[i].qopts.values[j] + '\" ';
                str += 'data-name=\"' + res[i].qopts.names[j] + '\" ';
+               str += 'data-label=\"' + res[i].label + '\" ';
                str += 'data-sel=\"0\" ';
                str += 'style=\"font-weight:normal;color:#333333;cursor:pointer;\">';
                str += '<span id=\"xout_' + divid + '\" style=\"display:none;margin-right:8px;\">&#10004;</span>';
@@ -148,6 +149,16 @@ function ih_addfilterselection(divid) {
       
       //breadcrumb
       jQuery('#' + divid + '_bc').show();
+      
+      var temp = '';
+      temp += jQuery('#' + divid).data('fieldid') + '::';
+      temp += jQuery('#' + divid).data('label') + '::';
+      temp += jQuery('#' + divid).data('map') + ';';
+      
+      temp += jQuery('#' + divid).data('val') + '::';
+      temp += jQuery('#' + divid).data('name');
+      
+      jsfcore_trackitem(temp,jQuery('#' + divid).data('label'),jQuery('#' + divid).data('name'));
       
    } else {
       jQuery('#' + divid).data('sel','0');
