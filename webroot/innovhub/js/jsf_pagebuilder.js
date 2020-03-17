@@ -1251,7 +1251,7 @@ function jsfpb_shorterwdname(wdname) {
 }
 
 function jsfpb_getwebdata_jsonp(wdname,callback,params,checkcache){
-   alert('***chj*** jsfpb_getwebdata_jsonp wdname: ' + wdname + ' params: ' + params);
+   alert('***chj*** jsfpb_getwebdata_jsonp wdname: ' + wdname + ' callback: ' + callback + ' params: ' + params);
    var query = '';
    if (Boolean(wdname)) query += '&wdname=' + encodeURIComponent(wdname);
    if (Boolean(params)) query += params;
@@ -1302,7 +1302,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
    //if(jsfpb_devmode) alert('displaying ' + jsondata.rows.length + ' records: ' + JSON.stringify(jsondata.rows));
    jsfpb_ReturnJSON(jsondata);
    var str = '';
-   
+   alert('***chj*** jsfpb_drawvisualcomponents_return start: ' + JSON.stringify(jsondata));
    // create a list of jdata fields to display
    jsfpb_visualformelements = [];
    jsfpb_visualformlists = [];
@@ -1325,6 +1325,7 @@ function jsfpb_drawvisualcomponents_return(jsondata) {
       var rmnrows = jsondata.rows;
       var dimcounter = 0;
       while(dimcounter<50 && Boolean(rmnrows) && rmnrows.length>0) {
+         dimcounter++;
          var newrmnrows = [];
          for(var i=0;i<rmnrows.length;i++) {
             var lyr = JSON.parse(rmnrows[i].value);
