@@ -115,8 +115,8 @@ if(getParameter("newtool")==1) {
 <script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_admin.js"></script>
 <script src="<?php echo $GLOBALS['baseURLSSL'].$GLOBALS['jsFolder']; ?>jsf_pagebuilder_widgets.js"></script>
 <script>
-   var codedir = '<?php echo $GLOBALS['codeFolder']; ?>';
-   jsfpb_servercontroller = codedir + 'jsoncontroller.php?format=jsonp';
+   jsfpb_codedir = '<?php echo $GLOBALS['codeFolder']; ?>';
+   jsfpb_servercontroller = jsfpb_codedir + 'jsoncontroller.php?format=jsonp';
    jsfwd_servercontroller = jsfpb_servercontroller;
    jsfpb_jsoncontroller = jsfpb_codedir + 'jsoncontroller.php?format=json';
 
