@@ -20,8 +20,9 @@ var jsfpb_defaultfont = 'Arial';
 
 var jsfpb_devmode = false;
 
-var jsfpb_jsoncontroller = 'jsfcode/jsoncontroller.php?jodon=1';
-var jsfpb_servercontroller = 'jsfcode/jsoncontroller.php?format=jsonp';
+var jsfpb_codedir = 'jsfcode/';
+var jsfpb_jsoncontroller = jsfpb_codedir + 'jsoncontroller.php?jodon=1';
+var jsfpb_servercontroller = jsfpb_codedir + 'jsoncontroller.php?format=jsonp';
 
 var jsfpb_captcha;
 

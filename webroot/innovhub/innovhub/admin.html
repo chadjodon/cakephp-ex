@@ -26,12 +26,14 @@
 <script language="javascript" type="text/javascript" src="/innovhub/js/jsf_core.js"></script>  
 <script language="javascript" type="text/javascript" src="/innovhub/js/jsf_adatood.js"></script>  
 <script type="text/javascript">
-jsfcore_servercontroller = 'server/jsoncontroller.php?format=jsonp';
+
+jsfpb_codedir = 'server/';
+jsfcore_servercontroller = jsfpb_codedir + 'jsoncontroller.php?format=jsonp';
 jsfada_servercontroller = jsfcore_servercontroller;
 jsfpb_servercontroller = jsfcore_servercontroller;
 jsfwd_servercontroller = jsfcore_servercontroller;
 
-jsfpb_jsoncontroller =' server/jsoncontroller.php?format=json';
+jsfpb_jsoncontroller = jsfpb_codedir + 'jsoncontroller.php?format=json';
 
 jsfcore_header_bgcolor = '#FFFFFF';
 jsfcore_header_color = '#2e2e2e';

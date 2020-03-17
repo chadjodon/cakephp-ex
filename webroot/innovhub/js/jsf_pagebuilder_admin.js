@@ -61,7 +61,7 @@ function jsfpb_returnvalues(jsondata){
    str += '<input type=\"text\" id=\"new_pg_name\" style=\"font-size:10px;font-family:arial;width:130px;\">';
    str += '<span onclick=\"if (Boolean(jQuery(\'#new_pg_name\').val())) jsfpb_savepagechunks(jQuery(\'#new_pg_name\').val());\" style=\"margin-left:4px;padding:3px;border-radius:4px;font-size:8px;color#777777;border:1px solid #777777;background-color:#FFFFFF;cursor:pointer;\">Add New Page</span>';
    str += ' &nbsp; &nbsp; ';
-   str += '<span onclick=\"\" style=\"margin-left:4px;padding:3px;border-radius:4px;font-size:8px;color#777777;border:1px solid #777777;background-color:#FFFFFF;cursor:pointer;\">Backup Active Pages</span>';
+   str += '<span onclick=\"jsfpb_schedulebackup();\" style=\"margin-left:4px;padding:3px;border-radius:4px;font-size:8px;color#777777;border:1px solid #777777;background-color:#FFFFFF;cursor:pointer;\">Backup Active Pages</span>';
    jQuery('#topadmin').html(str);
    
    //Drop down is set... now set the default page up
@@ -203,6 +203,38 @@ function jsfpb_trylocking_return(jsondata) {
 }
 
 
+
+
+function jsfpb_schedulebackup() {
+   var flt_name = jsfpb_flattenstr(jsfpb_tablename);
+   
+   var url = jsfpb_domain + jsfpb_jsoncontroller;
+   url += '&action=getwdandrows';
+   url += '&wd_id=' + encodeURIComponent(jsfpb_tablename);
+   url += '&cmsq_' + flt_name + '_enabled=yes';
+   url += '&cmsq_' + flt_name + '_verstatus=ACTIVE';
+   url += '&userid=' + encodeURIComponent(jsfpb_userid);
+   url += '&token=' + encodeURIComponent(jsfpb_token);
+   
+   var query = '';
+   query += '&subj=' + encodeURIComponent(jsfpb_getshortdate() + ' ' + jsfpb_tablename + ' backup');
+   query += '&json=' + encodeURIComponent(url);
+   query += '&userid=' + encodeURIComponent(jsfpb_userid);
+   query += '&token=' + encodeURIComponent(jsfpb_token);
+   
+   jsfpb_QuickJSON('requestjsoncsv','jsfpb_schedulebackup_return',query);
+}
+
+function jsfpb_schedulebackup_return(jsondata) {
+   alert('Successfully scheduled a backup.  This backup will complete within the next 24 hours.');
+}
+
+function jsfpb_getshortdate() {
+   var dt = new Date();
+   m = (dt.getMonth() + 1).toString().padStart(2, "0");
+   d = dt.getDate().toString().padStart(2, "0");
+   return dt.getFullYear() + m + d;
+}
 
 
 
@@ -953,7 +985,7 @@ function jsfpb_displayPageThumbnail(){
    str += '<div ';
    str += 'id=\"page_seoimgbtndiv\" ';
    str += 'style=\"width:80px;text-align:center;font-size:10px;color:#333333;cursor:pointer;background-color:#F1F1F1;padding:4px;border:1px solid #444444;border-radius:3px;\" ';
-   str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?userid=9&token=9&prefix=0_0_0&wd_id=seoimg&field_id=0\');\"';
+   str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?userid=9&token=9&prefix=0_0_0&wd_id=seoimg&field_id=0\');\"';
    str += '>Page Image</div>';
    str += '<div id=\"page_seoimgdiv\" style=\"margin-top:5px;position:relative;\"></div>';
    
@@ -1209,7 +1241,7 @@ function jsfpb_displayRowInput(r){
       str += '<div ';
       str += 'id=\"' + divid + '_imgbtndiv\" ';
       str += 'style=\"width:140px;text-align:center;font-size:10px;color:#333333;cursor:pointer;background-color:#F1F1F1;padding:4px;border:1px solid #444444;border-radius:3px;\" ';
-      str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?userid=9&token=9&prefix=' + r + '&wd_id=bg&field_id=0\');\"';
+      str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?userid=9&token=9&prefix=' + r + '&wd_id=bg&field_id=0\');\"';
       str += '>Select Row Background</div>';
       str += '<div id=\"' + divid + '_imgdiv\" style=\"margin-top:5px;position:relative;\"></div>';
 
@@ -1807,7 +1839,7 @@ function jsfpb_displayLayerInput(r,s,l){
    str += '<div ';
    str += 'id=\"' + divid + '_docbtndiv\" ';
    str += 'style=\"width:80px;text-align:center;font-size:10px;color:#333333;cursor:pointer;background-color:#F1F1F1;padding:4px;border:1px solid #444444;border-radius:3px;\" ';
-   str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?userid=9&token=9&prefix=' + r + '_' + s + '_' + l + '&wd_id=doc&field_id=0\');\"';
+   str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?userid=9&token=9&prefix=' + r + '_' + s + '_' + l + '&wd_id=doc&field_id=0\');\"';
    str += '>Upload Doc</div>';
    str += '<div id=\"' + divid + '_docdiv\" style=\"margin-top:5px;margin-bottom:15px;position:relative;\"></div>';
    
@@ -1847,8 +1879,8 @@ function jsfpb_displayLayerInput(r,s,l){
    str += '<div ';
    str += 'id=\"' + divid + '_imgbtndiv\" ';
    str += 'style=\"width:80px;text-align:center;font-size:10px;color:#333333;cursor:pointer;background-color:#F1F1F1;padding:4px;border:1px solid #444444;border-radius:3px;\" ';
-   //str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?userid=9&token=9&prefix=' + r + '&wd_id=' + s + '&field_id=' + l + '\');\"';
-   str += 'onclick=\"window.open(\'' + jsfpb_domain + 'jsfcode/uploadimage.php?userid=9&token=9&prefix=' + r + '_' + s + '_' + l + '&wd_id=img&field_id=0\');\"';
+   //str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?userid=9&token=9&prefix=' + r + '&wd_id=' + s + '&field_id=' + l + '\');\"';
+   str += 'onclick=\"window.open(\'' + jsfpb_domain + jsfpb_codedir + 'uploadimage.php?userid=9&token=9&prefix=' + r + '_' + s + '_' + l + '&wd_id=img&field_id=0\');\"';
    str += '>Select Image</div>';
    str += '<div id=\"' + divid + '_imgdiv\" style=\"margin-top:5px;position:relative;\"></div>';
    str += '<div id=\"' + divid + '_imgdspdiv\" style=\"position:relative;\">';
@@ -2354,7 +2386,7 @@ function jsfpb_addvisualbuilderlink(divid) {
       str += 'onclick=\"';
       str += 'var vname=jQuery(\'#' + divid + '_content\').val();';
       str += 'if(Boolean(vname)) ';
-      str += 'window.open(\'' + jsfpb_domain + 'jsfcode/jsf_visualbuilder.php?userid=' + jsfpb_userid + '&token=' + jsfpb_token + '&wd_id=\' + encodeURIComponent(\'' + jsfpb_tablename + '\') + \'&name=\' + encodeURIComponent(vname));';
+      str += 'window.open(\'' + jsfpb_domain + jsfpb_codedir + 'jsf_visualbuilder.php?userid=' + jsfpb_userid + '&token=' + jsfpb_token + '&wd_id=\' + encodeURIComponent(\'' + jsfpb_tablename + '\') + \'&name=\' + encodeURIComponent(vname));';
       str += ' else ';
       str += 'alert(\'Please enter a name before launching the builder.\');';
       str += '\">Launch Visual Builder &gt;</div>';
